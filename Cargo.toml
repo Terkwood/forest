@@ -10,5 +10,4 @@ crate-type = ["cdylib"]
 
 
 [dependencies]
-#gdnative = { path = "../godot-rust/gdnative" }
 gdnative = { git = "https://github.com/GodotNativeTools/godot-rust" }
