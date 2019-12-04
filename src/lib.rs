@@ -14,7 +14,12 @@ impl HelloWorld {
 
     #[export]
     fn _ready(&self, _owner: gdnative::Node) {
-        godot_print!("hello, world.")
+        godot_print!("HELLO HELLO HELLO HELLO");
+        godot_print!("HELLO HELLO HELLO HELLO");
+        godot_print!("HELLO HELLO HELLO HELLO");
+        godot_print!("HELLO HELLO HELLO HELLO");
+        godot_print!("HELLO HELLO HELLO HELLO");
+        godot_print!("HELLO HELLO HELLO HELLO");
     }
 }
 
