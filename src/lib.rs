@@ -1,6 +1,9 @@
 #[macro_use]
 extern crate gdnative;
 
+pub mod lsys;
+pub mod parametric;
+
 #[derive(gdnative::NativeClass)]
 #[inherit(gdnative::Node)]
 #[user_data(gdnative::user_data::ArcData<HelloWorld>)]
