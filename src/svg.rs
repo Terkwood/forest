@@ -14,7 +14,7 @@ const RULE_F_CLASSIC: &str = "FF-[-F+F+F]+[+F-F-F]";
 const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
 const RULE_F_FRIENDLY: &str = "FF";
 
-const ITER: usize = 4;
+const ITER: usize = 7;
 
 pub fn fractal_plant() {
     let axiom = symstr("X");

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Forest.gdns" type="Script" id=1]
 [ext_resource path="res://CenterWindow.gd" type="Script" id=2]
-[ext_resource path="res://plant_04.svg" type="Texture" id=3]
+[ext_resource path="res://plant_07.svg" type="Texture" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -20,5 +20,5 @@ texture = ExtResource( 3 )
 [node name="Camera2D" type="Camera2D" parent="Sprite"]
 position = Vector2( 158.625, 42.0828 )
 current = true
-zoom = Vector2( 3, 3 )
+zoom = Vector2( 5, 5 )
 
