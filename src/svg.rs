@@ -14,7 +14,7 @@ const RULE_F_CLASSIC: &str = "FF-[-F+F+F]+[+F-F-F]";
 const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
 const RULE_F_FRIENDLY: &str = "FF";
 
-const ITER = 4;
+const ITER: usize = 4;
 
 pub fn fractal_plant() {
     let axiom = symstr("X");
@@ -24,7 +24,7 @@ pub fn fractal_plant() {
     system.add_rule(rule('F', RULE_F_FRIENDLY));
     println!("{:?}", system);
 
-    let (after, iters) = system.develop(axiom, maxiter);
+    let (after, iters) = system.develop(axiom, ITER);
 
     draw(&after, 0.0, 20.0, 10.0, &format!("plant_{:02}", iters));
 }
