@@ -1,5 +1,4 @@
 /// Thanks to [mneumann](https://github.com/mneumann/lindenmayer-system) for the implementation of L-Systems.
-
 use crate::lsys::{Alphabet, DualAlphabet};
 use expression::{Condition, Expression, ExpressionError};
 use rand::Rng;

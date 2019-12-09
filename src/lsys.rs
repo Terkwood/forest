@@ -1,5 +1,4 @@
 /// Thanks to [mneumann](https://github.com/mneumann/lindenmayer-system) for the implementation of L-Systems.
-
 use std::fmt::Debug;
 
 /// Used to name symbols and variables.

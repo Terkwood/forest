@@ -3,6 +3,9 @@ extern crate gdnative;
 
 pub mod lsys;
 pub mod parametric;
+mod svg;
+
+const FOREST: &str = "FF-[-F+F+F]";
 
 #[derive(gdnative::NativeClass)]
 #[inherit(gdnative::Node)]
@@ -17,6 +20,7 @@ impl HelloWorld {
 
     #[export]
     fn _ready(&self, _owner: gdnative::Node) {
+        svg::fractal_plant();
         godot_print!("HELLO HELLO HELLO HELLO");
         godot_print!("HELLO HELLO HELLO HELLO");
         godot_print!("HELLO HELLO HELLO HELLO");
