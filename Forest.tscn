@@ -21,4 +21,3 @@ texture = ExtResource( 3 )
 position = Vector2( 158.625, 42.0828 )
 current = true
 zoom = Vector2( 5, 5 )
-
