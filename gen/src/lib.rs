@@ -20,8 +20,11 @@ impl HelloWorld {
 
     #[export]
     fn _ready(&self, _owner: gdnative::Node) {
-        svg::fractal_plant();
-        godot_print!("Draw plant and save to disk[!]");
+        let bytes_output = svg::draw_svg_utf8();
+        godot_print!(
+            "{}",
+            String::from_utf8(bytes_output).unwrap_or("ERR".to_string())
+        );
     }
 }
 
