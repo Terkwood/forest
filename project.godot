@@ -19,6 +19,11 @@ config/name="forest"
 run/main_scene="res://Forest.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

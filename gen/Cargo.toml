@@ -1,17 +1,15 @@
 [package]
 name = "forest"
-version = "0.0.2"
-authors = ["Terkwood <metaterkhorn@gmail.com>"]
+version = "0.0.3"
+authors = ["terkwood <38859656+Terkwood@users.noreply.github.com>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
 crate-type = ["cdylib"]
-
 
 [dependencies]
 gdnative = { git = "https://github.com/GodotNativeTools/godot-rust" }
 expression = "0.3.4"
-rand = "0.7.2"
+rand = "0.7.3"
 expression-num = "0.2.3"
 turtle-graphics = "0.1.2"

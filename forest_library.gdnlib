@@ -1,8 +1,8 @@
 [entry]
 
-X11.64="res://target/debug/libforest.so"
-OSX.64="res://target/debug/libforest.dylib"
-Windows.64="res://target/debug/forest.dll"
+X11.64="res://gen/target/debug/libforest.so"
+OSX.64="res://gen/target/debug/libforest.dylib"
+Windows.64="res://gen/target/debug/forest.dll"
 
 [dependencies]
 
