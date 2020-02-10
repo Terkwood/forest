@@ -27,15 +27,11 @@ impl DrawTree {
     }
 
     #[export]
-    fn _ready(&self, _owner: gdnative::Node) {
+    unsafe fn _ready(&self, _owner: gdnative::Node) {
         let bytes_output = svg::draw_svg_utf8();
 
-        let (ok, convert_time) = timed(|| png::convert(&bytes_output));
-        if ok {
-            godot_print!("!! PNG conversion succeeded in {:#?} !!", convert_time)
-        } else {
-            godot_print!(":( PNG conversion FAILED in {:#?} :(", convert_time)
-        }
+        let (_bytes, convert_time) = timed(|| png::convert_bytes(&bytes_output));
+        godot_print!("!! PNG conversion succeeded in {:#?} !!", convert_time)
     }
 }
 
