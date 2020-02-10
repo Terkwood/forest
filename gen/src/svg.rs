@@ -7,9 +7,12 @@ use std::fs::File;
 use std::io::Write;
 use turtle_graphics::{Canvas, Turtle};
 
+#[allow(unused)]
 const RULE_X_0: &str = "F-[[X]+X]+F[+FX]-X";
+#[allow(unused)]
 const RULE_X_1: &str = "F[+X][-X]FX";
 
+#[allow(unused)]
 const RULE_F_CLASSIC: &str = "FF-[-F+F+F]+[+F-F-F]";
 
 const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
@@ -18,7 +21,7 @@ const RULE_F_FRIENDLY: &str = "FF";
 const ITER: usize = 7;
 
 pub fn draw_svg_utf8() -> Vec<u8> {
-    let (after, iters) = develop_system();
+    let (after, _) = develop_system();
 
     let mut v = vec![];
 
@@ -27,6 +30,7 @@ pub fn draw_svg_utf8() -> Vec<u8> {
     v
 }
 
+#[allow(unused)]
 pub fn draw_to_file() {
     let (after, iters) = develop_system();
 
@@ -40,7 +44,6 @@ fn develop_system() -> (Vec<PSym<char, f32>>, usize) {
     let mut system = System::new();
     system.add_rule(rule('X', RULE_X_FRIENDLY));
     system.add_rule(rule('F', RULE_F_FRIENDLY));
-    println!("{:?}", system);
     system.develop(axiom, ITER)
 }
 
@@ -60,7 +63,6 @@ pub fn draw<W: Write>(
     let mut t = Canvas::new();
     t.right(init_direction);
     for sym in symstr.iter() {
-        print!("{}", *sym.symbol());
         match (*sym.symbol(), sym.params().get(0)) {
             ('F', Some(&d)) => t.forward(d),
             ('F', None) => t.forward(default_distance),
@@ -79,7 +81,6 @@ pub fn draw<W: Write>(
             _ => {}
         }
     }
-    println!("");
     t.save_svg(writer).unwrap();
 }
 

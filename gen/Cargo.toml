@@ -1,6 +1,6 @@
 [package]
 name = "forest"
-version = "0.0.4"
+version = "0.0.5"
 authors = ["terkwood <38859656+Terkwood@users.noreply.github.com>"]
 edition = "2018"
 
@@ -13,5 +13,5 @@ expression = "0.3.4"
 rand = "0.7.3"
 expression-num = "0.2.3"
 turtle-graphics = "0.1.2"
-resvg = "0.9.0"
+resvg ={version =  "0.9.0", features = ["cairo-backend"]}
 usvg = "0.9.0"

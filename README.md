@@ -10,6 +10,14 @@ This project implements procedural drawing of trees in [Godot engine](https://go
 
 We found that [Godot custom drawing in 2D](https://docs.godotengine.org/en/3.2/tutorials/2d/custom_drawing_in_2d.html) slows the frame rate when compared to using sprites with pre-drawn textures.
 
+## Requirements
+
+So far this has been run on Debian 10.  You need `libcairo2-dev` installed:
+
+```sh
+sudo apt install libcairo2-dev
+```
+
 ## Additional Attributions
 
 Thanks to [mneumann](https://github.com/mneumann/lindenmayer-system) for the implementation of L-Systems.
