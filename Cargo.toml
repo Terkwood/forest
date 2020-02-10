@@ -10,6 +10,6 @@ crate-type = ["cdylib"]
 [dependencies]
 gdnative = { git = "https://github.com/GodotNativeTools/godot-rust" }
 expression = "0.3.4"
-rand = "0.7.2"
+rand = "0.7.3"
 expression-num = "0.2.3"
 turtle-graphics = "0.1.2"
