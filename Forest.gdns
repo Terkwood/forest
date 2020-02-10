@@ -3,7 +3,7 @@
 [ext_resource path="res://forest_library.gdnlib" type="GDNativeLibrary" id=1]
 
 [resource]
-resource_name = "HelloWorld"
-class_name = "HelloWorld"
+resource_name = "DrawTree"
+class_name = "DrawTree"
 library = ExtResource( 1 )
 
