@@ -21,7 +21,7 @@ impl HelloWorld {
     #[export]
     fn _ready(&self, _owner: gdnative::Node) {
         svg::fractal_plant();
-        godot_print!("Draw plant");
+        godot_print!("Draw plant and save to disk[!]");
     }
 }
 
