@@ -1,5 +1,5 @@
 [package]
-name = "forest"
+name = "forest_gen"
 version = "0.0.5"
 authors = ["terkwood <38859656+Terkwood@users.noreply.github.com>"]
 edition = "2018"

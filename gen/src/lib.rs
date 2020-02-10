@@ -17,13 +17,13 @@ const FOREST: &str = "FF-[-F+F+F]";
 
 #[derive(gdnative::NativeClass)]
 #[inherit(gdnative::Node)]
-#[user_data(gdnative::user_data::ArcData<HelloWorld>)]
-struct HelloWorld;
+#[user_data(gdnative::user_data::ArcData<DrawTree>)]
+struct DrawTree;
 
 #[gdnative::methods]
-impl HelloWorld {
+impl DrawTree {
     fn _init(_owner: gdnative::Node) -> Self {
-        HelloWorld
+        DrawTree
     }
 
     #[export]
@@ -40,7 +40,7 @@ impl HelloWorld {
 }
 
 fn init(handle: gdnative::init::InitHandle) {
-    handle.add_class::<HelloWorld>();
+    handle.add_class::<DrawTree>();
     godot_print!("{:<8} {}", PKG_NAME, PKG_VERSION);
 }
 
