@@ -37,24 +37,27 @@ impl DrawTree {
 
         let (png_bytes, png_time) = timed(|| png::convert_bytes(&svg_bytes));
         godot_print!("!! PNG conversion in {:#?} !!", png_time);
-        let mut godot_bytes = ByteArray::new();
-        for b in png_bytes {
-            godot_bytes.push(b)
-        }
-        let mut image = Image::new();
+        let (_, godot_time) = timed(|| {
+            let mut godot_bytes = ByteArray::new();
+            for b in png_bytes {
+                godot_bytes.push(b)
+            }
+            let mut image = Image::new();
 
-        image.create_from_data(
-            IMG_WIDTH,
-            IMG_HEIGHT,
-            false,
-            Image::FORMAT_RGBA8,
-            godot_bytes,
-        );
-        let mut image_texture = ImageTexture::new();
-        image_texture.create_from_image(Some(image), 0);
-        let mut sprite = Sprite::new();
-        sprite.set_texture(Some(image_texture.to_texture()));
-        owner.add_child(Some(sprite.to_node()), true)
+            image.create_from_data(
+                IMG_WIDTH,
+                IMG_HEIGHT,
+                false,
+                Image::FORMAT_RGBA8,
+                godot_bytes,
+            );
+            let mut image_texture = ImageTexture::new();
+            image_texture.create_from_image(Some(image), 0);
+            let mut sprite = Sprite::new();
+            sprite.set_texture(Some(image_texture.to_texture()));
+            owner.add_child(Some(sprite.to_node()), true)
+        });
+        godot_print!("## Godot image, texture, and sprite in {:#?}", godot_time)
     }
 }
 
