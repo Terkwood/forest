@@ -4,7 +4,7 @@ Draw trees using Godot and rust. 🌳🤖🦀
 
 ## Dynamic PNG Generation
 
-This project implements procedural drawing of trees in (Godot engine)[https://godotengine.org/] using [Lindenmayer Systems](http://algorithmicbotany.org/papers/#abop).  We use Godot's [rust bindings](https://github.com/GodotNativeTools/godot-rust) to accomplish most of the work.
+This project implements procedural drawing of trees in [Godot engine](https://godotengine.org/) using [Lindenmayer Systems](http://algorithmicbotany.org/papers/#abop).  We use Godot's [rust bindings](https://github.com/GodotNativeTools/godot-rust) to accomplish most of the work.
 
 ### Justification
 
