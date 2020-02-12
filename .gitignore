@@ -1,6 +1,5 @@
 # Rust
-/gen/target
-/target
+target/
 **/*.rs.bk
 Cargo.lock
 
