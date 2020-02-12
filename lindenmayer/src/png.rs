@@ -5,7 +5,7 @@ pub fn convert_bytes(data: &[u8]) -> Vec<u8> {
 }
 
 pub fn convert_save(data: &[u8], name: &str) -> bool {
-    convert(data).save_png(std::path::Path::new(&format!("{}.png", name)))
+    convert(data).save_png(std::path::Path::new(&format!("lst_{}.png", name)))
 }
 
 fn convert(data: &[u8]) -> std::boxed::Box<dyn resvg::OutputImage> {
