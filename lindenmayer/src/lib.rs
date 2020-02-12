@@ -1,9 +1,9 @@
+pub mod parametric;
 pub mod png;
 pub mod svg;
 
 mod draw;
 mod lsys;
-mod parametric;
 
 use crate::parametric::{PRule, PSym, PSystem};
 use crate::parametric::{ParametricSymbol, ParametricSystem};
@@ -33,14 +33,17 @@ pub fn develop_canned_system() -> (Vec<PSym<char, f32>>, usize) {
     system.develop(axiom, ITER)
 }
 
-type Real = f32;
-type SymExpr = PSym<char, Expr<Real>>;
-type SymR = PSym<char, Real>;
-type Rule = PRule<char, SymExpr, SymR, Cond<Expr<Real>>>;
-type System = PSystem<Rule>;
+pub type Real = f32;
+pub type SymExpr = PSym<char, Expr<Real>>;
+pub type SymR = PSym<char, Real>;
 
-#[allow(unused)]
-fn symstr<S, R>(s: &str) -> Vec<S>
+pub type Rule = PRule<char, SymExpr, SymR, Cond<Expr<Real>>>;
+pub type System = PSystem<Rule>;
+pub fn create_system() -> System {
+    System::new()
+}
+
+pub fn symstr<S, R>(s: &str) -> Vec<S>
 where
     S: ParametricSymbol<Sym = char, Param = R>,
     R: Clone + Debug + PartialEq,
@@ -51,7 +54,6 @@ where
         .collect()
 }
 
-#[allow(unused)]
-fn rule(sym: char, successor: &str) -> Rule {
+pub fn rule(sym: char, successor: &str) -> Rule {
     Rule::new(sym, Cond::True, symstr(successor), 0)
 }

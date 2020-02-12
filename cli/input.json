@@ -4,7 +4,7 @@
         "n": 5,
         "d": 25.7,
         "axiom": "F",
-        "rules": {
+        "productions": {
             "in": "F",
             "out": "F[+F]F[-F]F"
         }
@@ -14,7 +14,7 @@
         "n": 4,
         "d": 22.5,
         "axiom": "F",
-        "rules": {
+        "productions": {
             "in": "F",
             "out": "FF-[-F+F+F]+[+F-F-F]"
         }
