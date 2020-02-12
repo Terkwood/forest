@@ -24,7 +24,7 @@ const RULE_F_FRIENDLY: &str = "FF";
 
 const ITER: usize = 7;
 
-pub fn develop_system() -> (Vec<PSym<char, f32>>, usize) {
+pub fn develop_canned_system() -> (Vec<PSym<char, f32>>, usize) {
     let axiom = symstr("X");
 
     let mut system = System::new();

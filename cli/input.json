@@ -8,5 +8,15 @@
             "in": "F",
             "out": "F[+F]F[-F]F"
         }
+    },
+    {
+        "name": "c",
+        "n": 4,
+        "d": 22.5,
+        "axiom": "F",
+        "rules": {
+            "in": "F",
+            "out": "FF-[-F+F+F]+[+F-F-F]"
+        }
     }
 ]
