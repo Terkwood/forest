@@ -1,6 +1,15 @@
 use std::fs::File;
 
 use crate::draw::*;
+use crate::parametric::PSym;
+
+pub fn draw_svg_utf8(input: Vec<PSym<char, f32>>) -> Vec<u8> {
+    let mut v = vec![];
+
+    draw(&input, 0.0, 20.0, 10.0, &mut v);
+
+    v
+}
 
 pub fn canned_draw_svg_utf8() -> Vec<u8> {
     let (after, _) = crate::develop_canned_system();

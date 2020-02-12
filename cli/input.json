@@ -4,19 +4,23 @@
         "n": 5,
         "d": 25.7,
         "axiom": "F",
-        "productions": {
-            "in": "F",
-            "out": "F[+F]F[-F]F"
-        }
+        "prods": [
+            {
+                "in": "F",
+                "out": "F[+F]F[-F]F"
+            }
+        ]
     },
     {
         "name": "c",
         "n": 4,
         "d": 22.5,
         "axiom": "F",
-        "productions": {
-            "in": "F",
-            "out": "FF-[-F+F+F]+[+F-F-F]"
-        }
+        "prods": [
+            {
+                "in": "F",
+                "out": "FF-[-F+F+F]+[+F-F-F]"
+            }
+        ]
     }
 ]
