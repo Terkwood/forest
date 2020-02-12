@@ -11,14 +11,15 @@ pub struct StepOutput(pub String);
 
 #[derive(Deserialize, Debug)]
 pub struct Rule {
-    pub input: StepInput,
-    pub output: StepOutput,
+    pub r#in: StepInput,
+    pub out: StepOutput,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct System {
-    iterations: i32,
-    delta: f64,
+    n: i32,
+    d: f64,
     axiom: Axiom,
-    productions: Vec<Rule>,
+    rules: Vec<Rule>,
+    name: Option<String>,
 }
