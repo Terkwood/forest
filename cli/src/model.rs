@@ -18,11 +18,11 @@ pub struct Production {
 
 #[derive(Deserialize, Debug)]
 pub struct LSystem {
-    n: i32,
-    d: f64,
-    axiom: Axiom,
-    prods: Vec<Production>,
-    name: Option<String>,
+    pub n: i32,
+    pub d: f64,
+    pub axiom: Axiom,
+    pub prods: Vec<Production>,
+    pub name: Option<String>,
 }
 impl LSystem {
     pub fn develop(&self) -> (Vec<PSym<char, f32>>, usize) {
