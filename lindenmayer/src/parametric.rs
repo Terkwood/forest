@@ -442,6 +442,7 @@ where
     rules: BTreeMap<A::NonTerminal, Vec<R>>,
 }
 
+#[allow(unused)]
 impl<A, Rule> PDualMapSystem<A, Rule>
 where
     A: DualAlphabet,
