@@ -30,7 +30,7 @@ impl DrawTree {
 
     #[export]
     unsafe fn _ready(&self, mut owner: gdnative::Node) {
-        let (svg_bytes, svg_time) = timed(|| svg::draw_svg_utf8());
+        let (svg_bytes, svg_time) = timed(|| svg::canned_draw_svg_utf8());
         godot_print!(".. SVG generation in {:#?} ..", svg_time);
 
         let (png_bytes, png_time) = timed(|| png::convert_bytes(&svg_bytes));
