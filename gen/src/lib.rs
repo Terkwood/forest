@@ -1,13 +1,11 @@
 #[macro_use]
 extern crate gdnative;
+extern crate lindenmayer;
 
-pub mod lsys;
-pub mod parametric;
-mod png;
-mod svg;
 mod timed;
 
 use gdnative::{ByteArray, Image, ImageTexture, Sprite};
+use lindenmayer::{png, svg};
 use timed::timed;
 
 const PKG_NAME: &'static str = env!("CARGO_PKG_NAME");
