@@ -11,32 +11,18 @@ const float O = 3.;
 vec2 grid(vec2 p, vec2 size) { return floor(p * size); }
 
 ";
-pub const BOGUS_MID: &str = "
+pub const DEFINE_BITMAP_FN: &str = "
 vec4 bitmap(vec2 p, vec2 scale) {
 	vec4 res = BACKGROUND;
 	
 	vec2 gv = grid(p, scale); // grid guide
 ";
+pub const BITMAP_BEFORE_Q_CALLS: &str = "
+// Indexing is upside down.
+int y = int(scale.y - gv.y - 5.);
+float m = 0.;
+";
 pub const BOGUS_END: &str = "
-        // Indexing is upside down.
-        int y = int(scale.y - gv.y - 5.);
-		float m = 0.;
-		m = Q(m,y,0,_,_,_,_,_,B,B,B);
-		m = Q(m,y,1,_,_,_,B,B,B,D,O);
-		m = Q(m,y,2, _,_,B,B,D,D,D,O);
-		m = Q(m,y,3, _,B,B,O,D,D,O,O);
-		m = Q(m,y,4, _,B,D,O,O,O,O,O);
-		m = Q(m,y,5, B,B,D,D,O,O,D,D);
-		m = Q(m,y,6, B,D,D,D,O,D,D,D);
-		m = Q(m,y,7, B,D,D,D,O,D,D,D);
-		m = Q(m,y,8, B,D,D,O,O,D,D,D);
-		m = Q(m,y,9, B,O,O,O,O,O,D,D);
-		m = Q(m,y,10,B,O,O,B,B,B,B,B);
-        m = Q(m,y,11,B,B,B,B,D,D,B,D);
-		m = Q(m,y,12,_,B,B,D,D,D,B,D);
-		m = Q(m,y,13,_,_,B,D,D,D,D,D);
-		m = Q(m,y,14,_,_,B,B,D,D,D,D);
-		m = Q(m,y,15,_,_,_,B,B,B,B,B);
 	
 		float ldx = 15. - gv.x; // left bit index
 		float rdx = gv.x;

@@ -20,11 +20,13 @@ impl Shader {
         let png_img = image::load_from_memory(png_rgba_bytes)?;
         let (width, height) = (png_img.width(), png_img.height());
         Ok(Shader(format!(
-            "{}{}{}{}{}",
+            "{}{}{}{}{}{}{}",
             boilerplate::BEGINNING,
-            code::q_fn(width),
-            boilerplate::BOGUS_MID,
-            code::gv_if(width, height),
+            code::define_q_fn(width),
+            boilerplate::DEFINE_BITMAP_FN,
+            code::bitmap_gv_if(width, height),
+            boilerplate::BITMAP_BEFORE_Q_CALLS,
+            code::bitmap_q_calls(width, height),
             boilerplate::BOGUS_END
         )))
     }
