@@ -18,7 +18,11 @@ impl Shader {
     pub fn from(png_rgba_bytes: &[u8]) -> Result<Shader, Err> {
         let png_img = image::load_from_memory(png_rgba_bytes)?;
         let (_width, _height) = (png_img.width(), png_img.height());
-        Ok(Shader(boilerplate::BOGUS.to_string()))
+        Ok(Shader(format!(
+            "{}{}",
+            boilerplate::BEGINNING,
+            boilerplate::BOGUS_REST
+        )))
     }
 }
 
