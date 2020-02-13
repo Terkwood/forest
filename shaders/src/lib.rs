@@ -1,6 +1,7 @@
 extern crate image;
 
 mod boilerplate;
+mod code;
 
 use crate::image::GenericImageView;
 
@@ -17,11 +18,13 @@ impl From<image::ImageError> for Err {
 impl Shader {
     pub fn from(png_rgba_bytes: &[u8]) -> Result<Shader, Err> {
         let png_img = image::load_from_memory(png_rgba_bytes)?;
-        let (_width, _height) = (png_img.width(), png_img.height());
+        let (width, height) = (png_img.width(), png_img.height());
         Ok(Shader(format!(
-            "{}{}",
+            "{}{}{}{}",
             boilerplate::BEGINNING,
-            boilerplate::BOGUS_REST
+            boilerplate::BOGUS_MID,
+            code::gv_if(width, height),
+            boilerplate::BOGUS_END
         )))
     }
 }

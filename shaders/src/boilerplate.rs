@@ -11,7 +11,7 @@ const float O = 3.;
 vec2 grid(vec2 p, vec2 size) { return floor(p * size); }
 
 ";
-pub const BOGUS_REST: &str = "float Q(float m, int y, int i, float a, float b, float c, float d, float e, float f, float g, float h) {
+pub const BOGUS_MID: &str = "float Q(float m, int y, int i, float a, float b, float c, float d, float e, float f, float g, float h) {
 	if (y == i) {
 		return (a+4.*(b+4.*(c+4.*(d+4.*(e+4.*(f+4.*(g+4.*(h+4.))))))));
 	} else {
@@ -19,14 +19,12 @@ pub const BOGUS_REST: &str = "float Q(float m, int y, int i, float a, float b, f
 	}
 }
 
-vec4 mushroom(vec2 p, vec2 scale) {
+vec4 bitmap(vec2 p, vec2 scale) {
 	vec4 res = BACKGROUND;
 	
 	vec2 gv = grid(p, scale); // grid guide
-	
-	if (gv.x >= 0. && gv.y >= 0. &&
-		gv.x <= 15. && gv.y <= 15.) {
-			
+";
+pub const BOGUS_END: &str = "
         // Indexing is upside down.
         int y = int(scale.y - gv.y - 5.);
 		float m = 0.;
@@ -71,5 +69,5 @@ vec4 mushroom(vec2 p, vec2 scale) {
 void fragment() {
 	vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
 	vec2 uv = FRAGCOORD.xy / resolution.xy * vec2(resolution.x / resolution.y, 1.0);
-	COLOR = mushroom(uv - vec2(.1, .1), vec2(20.));
+	COLOR = bitmap(uv - vec2(.1, .1), vec2(20.));
 }";
