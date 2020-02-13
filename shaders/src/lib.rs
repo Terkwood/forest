@@ -43,6 +43,11 @@ mod tests {
     }
 
     #[test]
+    fn it_makes_the_string() {
+        let shader = Shader::from(&png_bytes()).expect("fail");
+        assert!(shader.0.len() > 300)
+    }
+    #[test]
     fn bogus_image_bytes_blow_up() {
         let shader = Shader::from(&[0, 1, 100, 101]);
         assert!(if let Ok(_) = shader { false } else { true })
