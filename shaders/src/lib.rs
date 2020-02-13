@@ -1,4 +1,4 @@
-pub struct Shader(String);
+pub struct Shader(pub String);
 pub struct Err();
 impl Shader {
     pub fn from(png_rgba_bytes: &[u8]) -> Result<Shader, Err> {
