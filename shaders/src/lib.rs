@@ -20,8 +20,9 @@ impl Shader {
         let png_img = image::load_from_memory(png_rgba_bytes)?;
         let (width, height) = (png_img.width(), png_img.height());
         Ok(Shader(format!(
-            "{}{}{}{}",
+            "{}{}{}{}{}",
             boilerplate::BEGINNING,
+            code::q_fn(width),
             boilerplate::BOGUS_MID,
             code::gv_if(width, height),
             boilerplate::BOGUS_END

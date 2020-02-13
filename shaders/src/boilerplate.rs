@@ -11,14 +11,7 @@ const float O = 3.;
 vec2 grid(vec2 p, vec2 size) { return floor(p * size); }
 
 ";
-pub const BOGUS_MID: &str = "float Q(float m, int y, int i, float a, float b, float c, float d, float e, float f, float g, float h) {
-	if (y == i) {
-		return (a+4.*(b+4.*(c+4.*(d+4.*(e+4.*(f+4.*(g+4.*(h+4.))))))));
-	} else {
-		return m;
-	}
-}
-
+pub const BOGUS_MID: &str = "
 vec4 bitmap(vec2 p, vec2 scale) {
 	vec4 res = BACKGROUND;
 	
