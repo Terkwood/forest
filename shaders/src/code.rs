@@ -21,7 +21,7 @@ pub fn q_fn(width: u32) -> String {
     );
 
     for arg in 0..width {
-        out.push_str(&format!("({}.0+4.*", arg))
+        out.push_str(&format!("(r{}+4.*", arg))
     }
 
     out.push_str("1.");
@@ -31,13 +31,17 @@ pub fn q_fn(width: u32) -> String {
 
     out.push_str(
         ";
-} else {
-    return m;
-}
+    } else {
+        return m;
+    }
 }
 
 ",
     );
 
     out
+}
+
+pub fn bitmap_q_calls(width: u32) -> String {
+    todo!()
 }
