@@ -48,12 +48,15 @@ pub fn bitmap_q_calls(width: u32, height: u32) -> String {
     for row in 0..height {
         out.push_str(&format!("      m = Q(m,y,{},", row));
         let mut wheelie = 0;
-        for _ in 0..width {
-            out.push_str(&format!("{},", COLORS[wheelie]));
+        for arg in 0..width {
+            out.push_str(&format!("{}", COLORS[wheelie]));
+            if arg < width - 1 {
+                out.push(',');
+            }
             wheelie = (wheelie + 1) % 4;
         }
         out.push_str(
-            ";
+            ");
 ",
         )
     }
