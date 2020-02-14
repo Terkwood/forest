@@ -18,21 +18,16 @@ vec4 bitmap(vec2 p, vec2 scale) {
 	vec2 gv = grid(p, scale); // grid guide
 ";
 pub const BITMAP_BEFORE_Q_CALLS: &str = "
-// Indexing is upside down.
-int y = int(scale.y - gv.y - 5.);
-float m = 0.;
+		// Indexing is upside down.
+		int y = int(scale.y - gv.y - 5.);
+		float m = 0.;
 ";
-pub const BOGUS_END: &str = "
+pub const END: &str = "
 	
-		float ldx = 15. - gv.x; // left bit index
-		float rdx = gv.x;
 		float bit = 0.;
 		
-		if (gv.x >= 8.) 
-			bit = mod(m / pow(4., ldx), 4.); //decode
-		else
-			bit = mod(m / pow(4., rdx), 4.); // mirror
-		bit = floor(bit);                    // sharpen
+		bit = mod(m / pow(4., gv.x), 4.); 
+		bit = floor(bit);                 
 		
 		// Add color
 		if (bit > 2.)

@@ -27,7 +27,7 @@ impl Shader {
             code::bitmap_gv_if(width, height),
             boilerplate::BITMAP_BEFORE_Q_CALLS,
             code::bitmap_q_calls(width, height),
-            boilerplate::BOGUS_END
+            boilerplate::END
         )))
     }
 }
