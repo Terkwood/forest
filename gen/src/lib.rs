@@ -1,4 +1,3 @@
-#[macro_use]
 extern crate gdnative;
 extern crate lindenmayer;
 
@@ -30,7 +29,7 @@ impl DrawTree {
     }
 
     #[export]
-    fn _ready(&self, mut owner: &Node) {
+    fn _ready(&self, owner: &Node) {
         let (svg_bytes, svg_time) = timed(|| svg::canned_draw_svg_utf8());
         godot_print!(".. SVG generation in {:#?} ..", svg_time);
 
@@ -41,7 +40,7 @@ impl DrawTree {
             for b in png_bytes {
                 godot_bytes.push(b)
             }
-            let mut image = Image::new();
+            let image = Image::new();
 
             image.create_from_data(
                 IMG_WIDTH,
@@ -50,9 +49,9 @@ impl DrawTree {
                 Image::FORMAT_RGBA8,
                 godot_bytes,
             );
-            let mut image_texture = unsafe { ImageTexture::new().assume_unique() };
+            let image_texture = unsafe { ImageTexture::new().assume_unique() };
             image_texture.create_from_image(image, 0);
-            let mut sprite = Sprite::new();
+            let sprite = Sprite::new();
             sprite.set_texture(image_texture);
             owner.add_child(sprite.upcast::<Node>(), true)
         });
