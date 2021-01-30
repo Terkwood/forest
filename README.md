@@ -6,7 +6,7 @@ Draw trees using Godot and rust. 🌳🤖🦀
 
 This project implements procedural drawing of trees in [Godot engine](https://godotengine.org/) using [Lindenmayer Systems](http://algorithmicbotany.org/papers/#abop).
 
-The trees are first drawn with a Turtle implementation, as seen in [The Algorithmic Beautif of Plants](http://algorithmicbotany.org/papers/#abop).  They are first drawn as SVGs in memory, then converted to PNG bytes which are consumable by Godot.
+The trees are first drawn with a Turtle implementation, as seen in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/#abop).  They are first drawn as SVGs in memory, then converted to PNG bytes which are consumable by Godot.
 
 ### Justification
 
