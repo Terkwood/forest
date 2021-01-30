@@ -4,7 +4,8 @@ extern crate lindenmayer;
 
 mod timed;
 
-use gdnative::{ByteArray, Image, ImageTexture, Sprite, Node, NativeClass, init::InitHandle};
+use gdnative::prelude::*;
+use gdnative::api::*;
 use lindenmayer::{png, svg};
 use timed::timed;
 
@@ -19,7 +20,7 @@ const IMG_HEIGHT: i64 = 2987;
 
 #[derive(NativeClass)]
 #[inherit(Node)]
-#[user_data(gdnative::user_data::ArcData<DrawTree>)]
+#[user_data(user_data::ArcData<DrawTree>)]
 struct DrawTree;
 
 #[gdnative::methods]
