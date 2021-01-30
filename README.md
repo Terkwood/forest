@@ -2,11 +2,11 @@
 
 Draw trees using Godot and rust. 🌳🤖🦀
 
-## PNG Generation
+## Dynamic PNG Generation
 
 This project implements procedural drawing of trees in [Godot engine](https://godotengine.org/) using [Lindenmayer Systems](http://algorithmicbotany.org/papers/#abop).
 
-The trees are written to disk as PNGs and can't be dynamically generated during the course of gameplay. However, they can be packaged as assets once generated. We hope to add the ability to generate Godot `Image`s dynamically during the course of a game session. See issues [21](https://github.com/Terkwood/forest/issues/21) and [23](https://github.com/Terkwood/forest/issues/23). 
+The trees are first drawn with a Turtle implementation, as seen in [The Algorithmic Beautif of Plants](http://algorithmicbotany.org/papers/#abop).  They are first drawn as SVGs in memory, then converted to PNG bytes which are consumable by Godot.
 
 ### Justification
 
