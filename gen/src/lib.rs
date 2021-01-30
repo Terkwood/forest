@@ -33,7 +33,7 @@ impl DrawTree {
         let (svg_bytes, svg_time) = timed(|| svg::canned_draw_svg_utf8());
         godot_print!(".. SVG generation in {:#?} ..", svg_time);
 
-        let (png_bytes, png_time) = timed(|| png::convert_bytes(&svg_bytes));
+        let ((png_bytes, size), png_time) = timed(|| png::convert_bytes(&svg_bytes));
         godot_print!("!! PNG conversion in {:#?} !!", png_time);
         let (_, godot_time) = timed(|| {
             let mut godot_bytes = ByteArray::new();
@@ -43,8 +43,8 @@ impl DrawTree {
             let image = Image::new();
 
             image.create_from_data(
-                IMG_WIDTH,
-                IMG_HEIGHT,
+                size.width as i64,
+                size.height as i64,
                 false,
                 Image::FORMAT_RGBA8,
                 godot_bytes,
