@@ -9,5 +9,6 @@ expression = "0.3.4"
 rand = "0.7.3"
 expression-num = "0.2.3"
 turtle-graphics = {git = "https://github.com/Terkwood/turtle-graphics-rs", branch = "hack/stroke-width"}
-resvg ={version =  "0.9.0", features = ["cairo-backend"]}
-usvg = "0.9.0"
+resvg =   "0.13.1"
+usvg = "0.13.1"
+tiny-skia = "0.4.2"

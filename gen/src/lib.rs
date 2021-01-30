@@ -14,9 +14,6 @@ const PKG_VERSION: &'static str = env!("CARGO_PKG_VERSION");
 #[allow(unused)]
 const FOREST: &str = "FF-[-F+F+F]";
 
-const IMG_WIDTH: i64 = 1682;
-const IMG_HEIGHT: i64 = 2987;
-
 #[derive(NativeClass)]
 #[inherit(Node)]
 #[user_data(user_data::ArcData<DrawTree>)]
