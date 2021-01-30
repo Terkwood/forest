@@ -30,7 +30,7 @@ impl DrawTree {
         let (svg_bytes, svg_time) = timed(|| svg::canned_draw_svg_utf8());
         godot_print!(".. SVG generation in {:#?} ..", svg_time);
 
-        let ((png_bytes, size), png_time) = timed(|| png::convert_bytes(&svg_bytes));
+        let ((png_bytes, size), png_time) = timed(|| png::convert_svg_to_png_bytes(&svg_bytes));
         godot_print!("!! PNG conversion in {:#?} !!", png_time);
         let (_, godot_time) = timed(|| {
             let mut godot_bytes = ByteArray::new();
