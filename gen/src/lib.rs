@@ -3,8 +3,8 @@ extern crate lindenmayer;
 
 mod timed;
 
-use gdnative::prelude::*;
 use gdnative::api::*;
+use gdnative::prelude::*;
 use lindenmayer::{png, svg};
 use timed::timed;
 

@@ -8,7 +8,7 @@ pub fn convert_svg_to_png_bytes(data: &[u8]) -> (Vec<u8>, Size) {
     let out = convert_svg_to_png(data);
     
     let size = Size { width: out.width(), height: out.height()};
-    println!("-- size {:?}",size);
+
     (out.data().to_vec(), size)
 }
 
