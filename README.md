@@ -2,7 +2,7 @@
 
 Draw trees using Godot and rust. 🌳🤖🦀
 
-[ltree](https://user-images.githubusercontent.com/38859656/106359031-cce84280-62dd-11eb-9797-1c1c050ef83a.png)
+![ltree](https://user-images.githubusercontent.com/38859656/106359031-cce84280-62dd-11eb-9797-1c1c050ef83a.png)
 
 ## Dynamic image generation
 
