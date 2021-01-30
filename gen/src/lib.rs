@@ -51,7 +51,7 @@ impl DrawTree {
                 godot_bytes,
             );
             let mut image_texture = unsafe { ImageTexture::new().assume_unique() };
-            image_texture.create_from_image(Some(image), 0);
+            image_texture.create_from_image(image, 0);
             let mut sprite = Sprite::new();
             sprite.set_texture(image_texture);
             owner.add_child(sprite.upcast::<Node>(), true)
