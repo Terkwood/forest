@@ -25,7 +25,7 @@ struct DrawTree;
 
 #[gdnative::methods]
 impl DrawTree {
-    fn _init(_owner: &Node) -> Self {
+    fn new(_owner: &Node) -> Self {
         DrawTree
     }
 
