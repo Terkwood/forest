@@ -12,12 +12,13 @@ The trees are written to disk as PNGs and can't be dynamically generated during 
 
 We found that [Godot custom drawing in 2D](https://docs.godotengine.org/en/3.2/tutorials/2d/custom_drawing_in_2d.html) slows the frame rate when compared to using sprites with pre-drawn textures.
 
-## Requirements
+## Building the dependencies
 
-So far this has been run on Debian 10.  You need `libcairo2-dev` installed:
+You need to build the `gen` dependency so that Godot has access to the shared lib written in rust:
 
 ```sh
-sudo apt install libcairo2-dev
+cd gen
+cargo build --release
 ```
 
 ## Additional Attributions
