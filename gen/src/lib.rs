@@ -54,7 +54,7 @@ impl DrawTree {
             image_texture.create_from_image(Some(image), 0);
             let mut sprite = Sprite::new();
             sprite.set_texture(image_texture);
-            owner.add_child(Some(sprite.to_node()), true)
+            owner.add_child(sprite.upcast::<Node>(), true)
         });
         godot_print!("## Godot image, texture, and sprite in {:#?}", godot_time)
     }
