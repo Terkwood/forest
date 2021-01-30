@@ -4,7 +4,7 @@ extern crate lindenmayer;
 
 mod timed;
 
-use gdnative::{ByteArray, Image, ImageTexture, Sprite};
+use gdnative::{ByteArray, Image, ImageTexture, Sprite, Node, NativeClass, init::InitHandle};
 use lindenmayer::{png, svg};
 use timed::timed;
 
@@ -17,19 +17,19 @@ const FOREST: &str = "FF-[-F+F+F]";
 const IMG_WIDTH: i64 = 1682;
 const IMG_HEIGHT: i64 = 2987;
 
-#[derive(gdnative::NativeClass)]
-#[inherit(gdnative::Node)]
+#[derive(NativeClass)]
+#[inherit(Node)]
 #[user_data(gdnative::user_data::ArcData<DrawTree>)]
 struct DrawTree;
 
 #[gdnative::methods]
 impl DrawTree {
-    fn _init(_owner: gdnative::Node) -> Self {
+    fn _init(_owner: &Node) -> Self {
         DrawTree
     }
 
     #[export]
-    unsafe fn _ready(&self, mut owner: gdnative::Node) {
+    fn _ready(&self, mut owner: &Node) {
         let (svg_bytes, svg_time) = timed(|| svg::canned_draw_svg_utf8());
         godot_print!(".. SVG generation in {:#?} ..", svg_time);
 
@@ -59,7 +59,7 @@ impl DrawTree {
     }
 }
 
-fn init(handle: gdnative::init::InitHandle) {
+fn init(handle: InitHandle) {
     handle.add_class::<DrawTree>();
     godot_print!("{:<8} {}", PKG_NAME, PKG_VERSION);
 }
