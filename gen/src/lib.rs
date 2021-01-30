@@ -51,8 +51,10 @@ impl DrawTree {
             );
             let image_texture = unsafe { ImageTexture::new().assume_unique() };
             image_texture.create_from_image(image, 0);
+            godot_print!("# ... IMAGE TEXTURE CREATED");
             let sprite = Sprite::new();
             sprite.set_texture(image_texture);
+            godot_print!("# ... SET TEXTURE OK");
             owner.add_child(sprite.upcast::<Node>(), true)
         });
         godot_print!("## Godot image, texture, and sprite in {:#?}", godot_time)
@@ -64,6 +66,4 @@ fn init(handle: InitHandle) {
     godot_print!("{:<8} {}", PKG_NAME, PKG_VERSION);
 }
 
-godot_gdnative_init!();
-godot_nativescript_init!(init);
-godot_gdnative_terminate!();
+godot_init!(init);
