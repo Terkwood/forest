@@ -4,6 +4,7 @@
 
 [node name="Forest" type="Node2D"]
 script = ExtResource( 1 )
+base/rules = "X:F[+X]F[-X]+X;F:FF"
 base/start = "X"
 base/iter = 7
 
