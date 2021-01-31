@@ -19,18 +19,18 @@ const RULE_X_1: &str = "F[+X][-X]FX";
 #[allow(unused)]
 const RULE_F_CLASSIC: &str = "FF-[-F+F+F]+[+F-F-F]";
 
-const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
-const RULE_F_FRIENDLY: &str = "FF";
+//const ITER: usize = 7;
 
-const ITER: usize = 7;
-
-pub fn develop_canned_system() -> (Vec<PSym<char, f32>>, usize) {
-    let axiom = symstr("X");
+pub fn develop_canned_system(start: &str, rules: Vec<Rule>, iter: usize) -> (Vec<PSym<char, f32>>, usize) {
+//    let axiom = symstr("X");
 
     let mut system = System::new();
-    system.add_rule(rule('X', RULE_X_FRIENDLY));
-    system.add_rule(rule('F', RULE_F_FRIENDLY));
-    system.develop(axiom, ITER)
+    for r in rules {
+        system.add_rule(r)
+    }
+//    system.add_rule(rule('X', RULE_X_FRIENDLY));
+//    system.add_rule(rule('F', RULE_F_FRIENDLY));
+    system.develop(symstr(start), iter)
 }
 
 pub type Real = f32;

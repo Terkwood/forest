@@ -1,5 +1,3 @@
-use std::fs::File;
-
 use crate::draw::*;
 use crate::parametric::PSym;
 
@@ -21,8 +19,18 @@ pub fn draw_svg_utf8(input: Vec<PSym<char, f32>>) -> Vec<u8> {
     v
 }
 
+const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
+const RULE_F_FRIENDLY: &str = "FF";
+
 pub fn canned_draw_svg_utf8() -> Vec<u8> {
-    let (after, _) = crate::develop_canned_system();
+    use crate::rule;
+
+    const START: &str = "X";
+    const ITER: usize = 7;
+   
+    let rules = vec![ rule('X', RULE_X_FRIENDLY), rule('F', RULE_F_FRIENDLY)];
+   
+    let (after, _) = crate::develop_canned_system(START, rules, ITER);
 
     let mut v = vec![];
 
@@ -37,6 +45,7 @@ pub fn canned_draw_svg_utf8() -> Vec<u8> {
     v
 }
 
+/*
 #[allow(unused)]
 pub fn canned_draw_to_file() {
     let (after, iters) = crate::develop_canned_system();
@@ -49,4 +58,4 @@ pub fn canned_draw_to_file() {
         DEFAULT_DISTANCE,
         &mut file,
     );
-}
+}*/
