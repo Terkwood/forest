@@ -27,9 +27,9 @@ pub fn canned_draw_svg_utf8() -> Vec<u8> {
 
     const START: &str = "X";
     const ITER: usize = 7;
-   
-    let rules = vec![ rule('X', RULE_X_FRIENDLY), rule('F', RULE_F_FRIENDLY)];
-   
+
+    let rules = vec![rule('X', RULE_X_FRIENDLY), rule('F', RULE_F_FRIENDLY)];
+
     let (after, _) = crate::develop_canned_system(START, rules, ITER);
 
     let mut v = vec![];
