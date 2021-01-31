@@ -19,20 +19,14 @@ const DEFAULT_DISTANCE: f32 = 4.0;
     v
 }*/
 
-const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
-const RULE_F_FRIENDLY: &str = "FF";
-
 pub struct DrawProps {
-    pub start: String,
+    pub start: char,
     pub rules: Vec<Rule>,
     pub iter: usize,
 }
 
 pub fn draw_svg_utf8(draw_props: DrawProps) -> Vec<u8> {
-    use crate::rule;
-    let rules = vec![rule('X', RULE_X_FRIENDLY), rule('F', RULE_F_FRIENDLY)];
-
-    let (after, _) = crate::develop_system(&draw_props.start, rules, draw_props.iter);
+    let (after, _) = crate::develop_system(draw_props.start, draw_props.rules, draw_props.iter);
 
     let mut v = vec![];
 

@@ -24,6 +24,11 @@ struct DrawTree {
 
 fn register_properties(_builder: &ClassBuilder<DrawTree>) {}
 
+use lindenmayer::svg::DrawProps;
+
+const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
+const RULE_F_FRIENDLY: &str = "FF";
+
 #[gdnative::methods]
 impl DrawTree {
     fn new(_owner: &Node) -> Self {
@@ -32,7 +37,14 @@ impl DrawTree {
 
     #[export]
     fn _ready(&self, owner: &Node) {
-        let (svg_bytes, svg_time) = timed(|| svg::canned_draw_svg_utf8());
+        use lindenmayer::rule;
+        let (svg_bytes, svg_time) = timed(|| {
+            svg::draw_svg_utf8(DrawProps {
+                start: 'X',
+                iter: 7,
+                rules: vec![rule('X', RULE_X_FRIENDLY), rule('F', RULE_F_FRIENDLY)],
+            })
+        });
         godot_print!(".. SVG generation in {:#?} ..", svg_time);
 
         let ((png_bytes, size), png_time) = timed(|| png::convert_svg_to_png_bytes(&svg_bytes));
