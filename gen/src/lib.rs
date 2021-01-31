@@ -16,9 +16,6 @@ const PKG_VERSION: &'static str = env!("CARGO_PKG_VERSION");
 //
 const _FOREST: &str = "FF-[-F+F+F]";
 
-const _RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
-const _RULE_F_FRIENDLY: &str = "FF";
-
 #[derive(NativeClass)]
 #[inherit(Node)]
 struct DrawTree {
@@ -98,9 +95,34 @@ impl DrawTree {
 }
 
 use lindenmayer::Rule;
+
+#[derive(Debug)]
 struct ParseErr;
-fn parse_rules(_compact: &str) -> Result<Vec<Rule>, ParseErr> {
-    todo!()
+
+/// Parse a rule system string written in a compact form, e.g.
+///   "X:F[+X]F[-X]+X;F:FF"
+fn parse_rules(compact: &str) -> Result<Vec<Rule>, ParseErr> {
+    let semi_split = compact.split(';');
+    let mut out = vec![];
+    use lindenmayer::rule;
+    for each in semi_split {
+        if !each.is_empty() {
+            let colon_split: Vec<&str> = each.split(':').collect();
+            if colon_split.len() == 0 {
+                continue;
+            }
+            if colon_split.len() != 2 {
+                return Err(ParseErr);
+            }
+            let test = (colon_split[0].chars().nth(0), colon_split[1]);
+            if let (Some(c), r) = test {
+                out.push(rule(c, r))
+            } else {
+                return Err(ParseErr);
+            }
+        }
+    }
+    Ok(out)
 }
 
 fn init(handle: InitHandle) {
@@ -109,3 +131,21 @@ fn init(handle: InitHandle) {
 }
 
 godot_init!(init);
+
+#[cfg(test)]
+mod tests {
+    use crate::parse_rules;
+
+    #[test]
+    fn test_parse_rules() {
+        const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
+        const RULE_F_FRIENDLY: &str = "FF";
+
+        let sample = &format!("X:{};F:{}", RULE_X_FRIENDLY, RULE_F_FRIENDLY);
+
+        use lindenmayer::rule;
+        let expected = vec![rule('X', RULE_X_FRIENDLY), rule('F', RULE_F_FRIENDLY)];
+        let actual = parse_rules(sample).expect("parse");
+        assert_eq!(actual, expected)
+    }
+}
