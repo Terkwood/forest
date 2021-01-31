@@ -1,11 +1,11 @@
 use crate::draw::*;
-use crate::parametric::PSym;
+use crate::Rule;
 
 const INIT_DIRECTION: f32 = 0.0;
 const DEFAULT_ANGLE: f32 = 20.0;
 const DEFAULT_DISTANCE: f32 = 4.0;
 
-pub fn draw_svg_utf8(input: Vec<PSym<char, f32>>) -> Vec<u8> {
+/*pub fn draw_svg_utf8(input: Vec<PSym<char, f32>>) -> Vec<u8> {
     let mut v = vec![];
 
     draw(
@@ -17,20 +17,22 @@ pub fn draw_svg_utf8(input: Vec<PSym<char, f32>>) -> Vec<u8> {
     );
 
     v
-}
+}*/
 
 const RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
 const RULE_F_FRIENDLY: &str = "FF";
 
-pub fn canned_draw_svg_utf8() -> Vec<u8> {
+pub struct DrawProps {
+    pub start: String,
+    pub rules: Vec<Rule>,
+    pub iter: usize,
+}
+
+pub fn draw_svg_utf8(draw_props: DrawProps) -> Vec<u8> {
     use crate::rule;
-
-    const START: &str = "X";
-    const ITER: usize = 7;
-
     let rules = vec![rule('X', RULE_X_FRIENDLY), rule('F', RULE_F_FRIENDLY)];
 
-    let (after, _) = crate::develop_canned_system(START, rules, ITER);
+    let (after, _) = crate::develop_system(&draw_props.start, rules, draw_props.iter);
 
     let mut v = vec![];
 

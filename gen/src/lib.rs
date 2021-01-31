@@ -27,7 +27,7 @@ fn register_properties(_builder: &ClassBuilder<DrawTree>) {}
 #[gdnative::methods]
 impl DrawTree {
     fn new(_owner: &Node) -> Self {
-        DrawTree { iter: 7 }
+        DrawTree { iter: 0 }
     }
 
     #[export]
