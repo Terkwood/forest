@@ -16,7 +16,6 @@ const FOREST: &str = "FF-[-F+F+F]";
 
 #[derive(NativeClass)]
 #[inherit(Node)]
-#[register_with(register_properties)]
 struct DrawTree {
     #[property(path = "base/start")]
     start: String,
@@ -25,8 +24,6 @@ struct DrawTree {
     #[property(path = "base/iter")]
     iter: u64,
 }
-
-fn register_properties(_builder: &ClassBuilder<DrawTree>) {}
 
 use lindenmayer::svg::DrawProps;
 
