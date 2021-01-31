@@ -4,6 +4,8 @@
 
 [node name="Forest" type="Node2D"]
 script = ExtResource( 1 )
+base/start = "X"
+base/iter = 7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 162.625, 54.0828 )
