@@ -16,13 +16,18 @@ const FOREST: &str = "FF-[-F+F+F]";
 
 #[derive(NativeClass)]
 #[inherit(Node)]
-#[user_data(user_data::ArcData<DrawTree>)]
-struct DrawTree;
+#[register_with(register_properties)]
+struct DrawTree {
+    #[property(path = "base/iter")]
+    iter: u64,
+}
+
+fn register_properties(_builder: &ClassBuilder<DrawTree>) {}
 
 #[gdnative::methods]
 impl DrawTree {
     fn new(_owner: &Node) -> Self {
-        DrawTree
+        DrawTree { iter: 7 }
     }
 
     #[export]
