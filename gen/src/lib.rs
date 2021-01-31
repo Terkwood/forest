@@ -11,8 +11,13 @@ use timed::timed;
 const PKG_NAME: &'static str = env!("CARGO_PKG_NAME");
 const PKG_VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
-#[allow(unused)]
-const FOREST: &str = "FF-[-F+F+F]";
+//
+// some old rules
+//
+const _FOREST: &str = "FF-[-F+F+F]";
+
+const _RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
+const _RULE_F_FRIENDLY: &str = "FF";
 
 #[derive(NativeClass)]
 #[inherit(Node)]
@@ -26,9 +31,6 @@ struct DrawTree {
 }
 
 use lindenmayer::svg::DrawProps;
-
-const _RULE_X_FRIENDLY: &str = "F[+X]F[-X]+X";
-const _RULE_F_FRIENDLY: &str = "FF";
 
 #[gdnative::methods]
 impl DrawTree {
