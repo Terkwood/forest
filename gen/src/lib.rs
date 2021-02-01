@@ -56,14 +56,7 @@ impl DrawTree {
     }
 
     fn draw(&self, start: char, rules: Vec<Rule>, iter: usize, owner: &Node) {
-        let (svg_bytes, svg_time) = timed(|| {
-            svg::draw_svg_utf8(DrawProps {
-                start,
-                iter,
-                rules,
-                //rules: vec![rule('X', RULE_X_FRIENDLY), rule('F', RULE_F_FRIENDLY)],
-            })
-        });
+        let (svg_bytes, svg_time) = timed(|| svg::draw_svg_utf8(DrawProps { start, iter, rules }));
         godot_print!(".. SVG generation in {:#?} ..", svg_time);
 
         let ((png_bytes, size), png_time) = timed(|| png::convert_svg_to_png_bytes(&svg_bytes));
