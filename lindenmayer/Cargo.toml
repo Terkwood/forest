@@ -2,7 +2,7 @@
 authors = ["terkwood <38859656+Terkwood@users.noreply.github.com>"]
 edition = "2018"
 name = "lindenmayer"
-version = "0.5.0"
+version = "0.5.1-a"
 
 [dependencies]
 expression = "0.3.4"

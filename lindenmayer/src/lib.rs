@@ -11,14 +11,6 @@ use expression::cond::Cond;
 use expression_num::NumExpr as Expr;
 use std::fmt::Debug;
 
-#[allow(unused)]
-const RULE_X_0: &str = "F-[[X]+X]+F[+FX]-X";
-#[allow(unused)]
-const RULE_X_1: &str = "F[+X][-X]FX";
-
-#[allow(unused)]
-const RULE_F_CLASSIC: &str = "FF-[-F+F+F]+[+F-F-F]";
-
 pub struct TreeOptions {
     pub axiom: char,
     pub delta: f32,
