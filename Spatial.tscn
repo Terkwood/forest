@@ -10,8 +10,8 @@ base/rules = "X:F[+X][-X]FX;F:FF"
 base/stroke_width = 4.0
 base/n = 7
 base/delta = 25.7
-base/axiom = "X"
 base/stroke_length = 10.0
+base/axiom = "X"
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.00109954, 0.999999, 0, -0.999999, 0.00109954, 0, 2.83608, 0 )
