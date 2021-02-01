@@ -11,11 +11,6 @@ use timed::timed;
 const PKG_NAME: &'static str = env!("CARGO_PKG_NAME");
 const PKG_VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
-//
-// some old rules
-//
-const _FOREST: &str = "FF-[-F+F+F]";
-
 #[derive(NativeClass)]
 #[inherit(Node)]
 struct DrawTree {
@@ -51,12 +46,7 @@ impl DrawTree {
 
     #[export]
     fn _ready(&self, owner: &Node) {
-        if self.axiom.is_empty() {
-            godot_error!("NO START AXIOM DEFINED");
-            return;
-        }
-
-        if let Some(axiom) = self.axiom.chars().nth(0) {
+        if let Some(axiom) = verify_axiom(&self.axiom) {
             if let Ok(rules) = parse_rules(&self.rules) {
                 self.draw(
                     TreeOptions {
@@ -101,6 +91,13 @@ impl DrawTree {
             owner.add_child(sprite.upcast::<Node>(), true)
         });
         godot_print!("## Godot image, texture, and sprite in {:#?}", godot_time)
+    }
+}
+
+fn verify_axiom(axiom_godot_field: &str) -> Option<char> {
+    match axiom_godot_field {
+        "" => None,
+        _ => axiom_godot_field.chars().nth(0),
     }
 }
 
