@@ -139,16 +139,16 @@ impl DrawTreeSpatial {
 
             let mesh_instance = MeshInstance::new();
 
-            let mut plane_mesh = PlaneMesh::new();
+            let plane_mesh = PlaneMesh::new();
 
-            let mut spatial_material = unsafe { SpatialMaterial::new().assume_unique() };
-            spatial_material.set_texture(0, image_texture);
+            let spatial_material = SpatialMaterial::new();
+            spatial_material.set_texture(0, image_texture.upcast::<Texture>());
+            plane_mesh.set_material(spatial_material);
+            mesh_instance.set_mesh(plane_mesh);
 
-            todo!(); //sprite.set_texture(image_texture.upcast::<Texture>());
-
-            todo!() //owner.add_child(sprite.upcast::<Node>(), true)
+            owner.add_child(mesh_instance.upcast::<Node>(), true)
         });
-        godot_print!("## Godot mesh in {:#?}", godot_time)
+        godot_print!("## mesh created in {:#?}", godot_time)
     }
 }
 
@@ -166,7 +166,7 @@ fn create_image_texture(png_bytes: lindenmayer::PngBytes) -> Ref<ImageTexture, U
         Image::FORMAT_RGBA8,
         godot_bytes,
     );
-    let image_texture = unsafe { ImageTexture::new().assume_unique() };
+    let image_texture = ImageTexture::new();
     image_texture.create_from_image(image, 0);
     image_texture
 }
