@@ -11,9 +11,12 @@ use timed::timed;
 const PKG_NAME: &'static str = env!("CARGO_PKG_NAME");
 const PKG_VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
+const DEFAULT_STROKE_WIDTH: f32 = 2.0;
+const DEFAULT_STROKE_LENGTH: f32 = 4.0;
+
 #[derive(NativeClass)]
 #[inherit(Node)]
-struct DrawTree {
+struct DrawTree2D {
     #[property(path = "base/axiom")]
     axiom: String,
     #[property(path = "base/n")]
@@ -28,13 +31,90 @@ struct DrawTree {
     stroke_length: f32,
 }
 
-const DEFAULT_STROKE_WIDTH: f32 = 2.0;
-const DEFAULT_STROKE_LENGTH: f32 = 4.0;
+#[gdnative::methods]
+impl DrawTree2D {
+    fn new(_owner: &Node) -> Self {
+        DrawTree2D {
+            axiom: "".to_string(),
+            rules: "".to_string(),
+            n: 0,
+            delta: 0.0,
+            stroke_width: DEFAULT_STROKE_WIDTH,
+            stroke_length: DEFAULT_STROKE_LENGTH,
+        }
+    }
+
+    #[export]
+    fn _ready(&self, owner: &Node) {
+        if let Some(axiom) = verify_axiom(&self.axiom) {
+            if let Ok(rules) = parse_rules(&self.rules) {
+                self.draw(
+                    TreeOptions {
+                        axiom,
+                        n: self.n as usize,
+                        rules,
+                        stroke_length: self.stroke_length,
+                        stroke_width: self.stroke_width,
+                        delta: self.delta,
+                    },
+                    owner,
+                )
+            }
+        } else {
+            godot_error!("NO START CHAR PROVIDED")
+        }
+    }
+
+    fn draw(&self, opts: TreeOptions, owner: &Node) {
+        let (png_bytes, png_time) = timed(|| tree(opts));
+        godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
+        let (_, godot_time) = timed(|| {
+            let mut godot_bytes = ByteArray::new();
+            for b in png_bytes.bytes {
+                godot_bytes.push(b)
+            }
+            let image = Image::new();
+
+            image.create_from_data(
+                png_bytes.size.width as i64,
+                png_bytes.size.height as i64,
+                false,
+                Image::FORMAT_RGBA8,
+                godot_bytes,
+            );
+            let image_texture = unsafe { ImageTexture::new().assume_unique() };
+            image_texture.create_from_image(image, 0);
+
+            let sprite = Sprite::new();
+            sprite.set_texture(image_texture.upcast::<Texture>());
+
+            owner.add_child(sprite.upcast::<Node>(), true)
+        });
+        godot_print!("## Godot image, texture, and sprite in {:#?}", godot_time)
+    }
+}
+
+#[derive(NativeClass)]
+#[inherit(Node)]
+struct DrawTreeSpatial {
+    #[property(path = "base/axiom")]
+    axiom: String,
+    #[property(path = "base/n")]
+    n: u64,
+    #[property(path = "base/delta")]
+    delta: f32,
+    #[property(path = "base/rules")]
+    rules: String,
+    #[property(path = "base/stroke_width")]
+    stroke_width: f32,
+    #[property(path = "base/stroke_length")]
+    stroke_length: f32,
+}
 
 #[gdnative::methods]
-impl DrawTree {
+impl DrawTreeSpatial {
     fn new(_owner: &Node) -> Self {
-        DrawTree {
+        DrawTreeSpatial {
             axiom: "".to_string(),
             rules: "".to_string(),
             n: 0,
@@ -133,7 +213,8 @@ fn parse_rules(compact: &str) -> Result<Vec<Rule>, ParseErr> {
 }
 
 fn init(handle: InitHandle) {
-    handle.add_class::<DrawTree>();
+    handle.add_class::<DrawTree2D>();
+    handle.add_class::<DrawTreeSpatial>();
     godot_print!("{:<8} {}", PKG_NAME, PKG_VERSION);
 }
 
