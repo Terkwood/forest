@@ -6,12 +6,12 @@
 
 [node name="TreeA" type="Spatial" parent="."]
 script = ExtResource( 1 )
-base/n = 7
 base/axiom = "X"
-base/rules = "X:F[+X][-X]FX;F:FF"
-base/stroke_length = 4.0
-base/delta = 25.7
+base/n = 7
 base/stroke_width = 4.0
+base/stroke_length = 4.0
+base/rules = "X:F[+X][-X]FX;F:FF"
+base/delta = 25.7
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.14076 )
