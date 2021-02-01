@@ -142,6 +142,7 @@ impl DrawTreeSpatial {
             let plane_mesh = PlaneMesh::new();
 
             let spatial_material = SpatialMaterial::new();
+            spatial_material.set_flag(SpatialMaterial::FEATURE_TRANSPARENT, true);
             spatial_material.set_texture(0, image_texture.upcast::<Texture>());
             plane_mesh.set_material(spatial_material);
             mesh_instance.set_mesh(plane_mesh);

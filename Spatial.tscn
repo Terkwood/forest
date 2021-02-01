@@ -7,11 +7,12 @@
 [node name="TreeE" type="Spatial" parent="."]
 script = ExtResource( 1 )
 base/rules = "X:F[+X][-X]FX;F:FF"
-base/axiom = "X"
+base/stroke_width = 4.0
 base/n = 7
 base/delta = 25.7
-base/stroke_width = 4.0
+base/axiom = "X"
 base/stroke_length = 10.0
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.14076 )
+transform = Transform( 1, 0, 0, 0, 0.00109954, 0.999999, 0, -0.999999, 0.00109954, 0, 2.83608, 0 )
+fov = 92.2227
