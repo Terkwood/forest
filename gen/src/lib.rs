@@ -139,7 +139,9 @@ impl DrawTreeSpatial {
 
             let mesh_instance = MeshInstance::new();
 
-            let plane_mesh = PlaneMesh::new();
+            let mut plane_mesh = PlaneMesh::new();
+
+            let mut spatial_material = unsafe { SpatialMaterial::new().assume_unique() };
 
             todo!(); //sprite.set_texture(image_texture.upcast::<Texture>());
 
