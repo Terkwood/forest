@@ -4,6 +4,7 @@
 
 [node name="TreeD" type="Node2D"]
 position = Vector2( 200.101, 173.673 )
+scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "start X / iter 7 / delta 20 / X:F[+X]F[-X]+X;F:FF
@@ -37,7 +38,7 @@ base/n = 5
 base/delta = 22.5
 
 [node name="TreeC" type="Node2D" parent="."]
-position = Vector2( 3193.98, -1332.98 )
+position = Vector2( 3217.76, -1570.82 )
 scale = Vector2( 3, 3 )
 script = ExtResource( 1 )
 base/rules = "F:FF-[-F+F+F]+[+F-F-F]"
@@ -48,7 +49,7 @@ base/n = 4
 base/delta = 22.5
 
 [node name="TreeB" type="Node2D" parent="."]
-position = Vector2( 1830.74, -1349.71 )
+position = Vector2( 1521.55, -1587.55 )
 script = ExtResource( 1 )
 base/rules = "F:F[+F]F[-F][F]"
 base/stroke_width = 4.0
@@ -56,3 +57,14 @@ base/stroke_length = 20.0
 base/axiom = "F"
 base/n = 5
 base/delta = 20.0
+
+[node name="TreeA" type="Node2D" parent="."]
+position = Vector2( 59.4604, -1595.92 )
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 1 )
+base/rules = "F:F[+F]F[-F]F"
+base/stroke_width = 4.0
+base/stroke_length = 6.0
+base/axiom = "F"
+base/n = 5
+base/delta = 25.7
