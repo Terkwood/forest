@@ -19,44 +19,66 @@ const _FOREST: &str = "FF-[-F+F+F]";
 #[derive(NativeClass)]
 #[inherit(Node)]
 struct DrawTree {
-    #[property(path = "base/start")]
-    start: String,
+    #[property(path = "base/axiom")]
+    axiom: String,
+    #[property(path = "base/n")]
+    n: u64,
+    #[property(path = "base/delta")]
+    delta: f32,
     #[property(path = "base/rules")]
     rules: String,
-    #[property(path = "base/iter")]
-    iter: u64,
+    #[property(path = "base/stroke_width")]
+    stroke_width: u16,
+    #[property(path = "base/stroke_length")]
+    stroke_length: f32,
 }
 
-use lindenmayer::svg::DrawProps;
+use lindenmayer::svg::DrawOptions;
+
+const DEFAULT_STROKE_WIDTH: u16 = 1;
+const DEFAULT_STROKE_LENGTH: f32 = 4.0;
 
 #[gdnative::methods]
 impl DrawTree {
     fn new(_owner: &Node) -> Self {
         DrawTree {
-            start: "".to_string(),
+            axiom: "".to_string(),
             rules: "".to_string(),
-            iter: 0,
+            n: 0,
+            delta: 0.0,
+            stroke_width: DEFAULT_STROKE_WIDTH,
+            stroke_length: DEFAULT_STROKE_LENGTH,
         }
     }
 
     #[export]
     fn _ready(&self, owner: &Node) {
-        if self.start.is_empty() {
+        if self.axiom.is_empty() {
             godot_error!("NO START AXIOM DEFINED");
             return;
         }
 
-        if let Some(start) = self.start.chars().nth(0) {
+        if let Some(axiom) = self.axiom.chars().nth(0) {
             if let Ok(rules) = parse_rules(&self.rules) {
-                self.draw(start, rules, self.iter as usize, owner)
+                self.draw(
+                    DrawOptions {
+                        axiom,
+                        n: self.n as usize,
+                        rules,
+                        stroke_length: DEFAULT_STROKE_LENGTH,
+                        stroke_width: 1,
+                        delta: self.delta,
+                    },
+                    owner,
+                )
             }
         } else {
             godot_error!("NO START CHAR PROVIDED")
         }
     }
 
-    fn draw(&self, start: char, rules: Vec<Rule>, iter: usize, owner: &Node) {
-        let (svg_bytes, svg_time) = timed(|| svg::draw_svg_utf8(DrawProps { start, iter, rules }));
+    fn draw(&self, opts: DrawOptions, owner: &Node) {
+        let (svg_bytes, svg_time) = timed(|| svg::draw_svg_utf8(opts));
         godot_print!(".. SVG generation in {:#?} ..", svg_time);
 
         let ((png_bytes, size), png_time) = timed(|| png::convert_svg_to_png_bytes(&svg_bytes));

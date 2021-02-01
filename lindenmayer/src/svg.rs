@@ -2,25 +2,26 @@ use crate::draw::*;
 use crate::Rule;
 
 const INIT_DIRECTION: f32 = 0.0;
-const DEFAULT_ANGLE: f32 = 20.0;
-const DEFAULT_DISTANCE: f32 = 4.0;
 
-pub struct DrawProps {
-    pub start: char,
+pub struct DrawOptions {
+    pub axiom: char,
+    pub delta: f32,
     pub rules: Vec<Rule>,
-    pub iter: usize,
+    pub n: usize,
+    pub stroke_width: u64,
+    pub stroke_length: f32,
 }
 
-pub fn draw_svg_utf8(draw_props: DrawProps) -> Vec<u8> {
-    let (after, _) = crate::develop_system(draw_props.start, draw_props.rules, draw_props.iter);
+pub fn draw_svg_utf8(draw_props: DrawOptions) -> Vec<u8> {
+    let (after, _) = crate::develop_system(draw_props.axiom, draw_props.rules, draw_props.n);
 
     let mut v = vec![];
 
     draw(
         &after,
         INIT_DIRECTION,
-        DEFAULT_ANGLE,
-        DEFAULT_DISTANCE,
+        draw_props.delta,
+        draw_props.stroke_length,
         &mut v,
     );
 
