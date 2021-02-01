@@ -165,10 +165,13 @@ impl DrawTreeSpatial {
             let image_texture = unsafe { ImageTexture::new().assume_unique() };
             image_texture.create_from_image(image, 0);
 
-            let sprite = Sprite::new();
-            sprite.set_texture(image_texture.upcast::<Texture>());
+            let mesh_instance = MeshInstance::new();
 
-            owner.add_child(sprite.upcast::<Node>(), true)
+            let plane_mesh = PlaneMesh::new();
+
+            todo!(); //sprite.set_texture(image_texture.upcast::<Texture>());
+
+            todo!() //owner.add_child(sprite.upcast::<Node>(), true)
         });
         godot_print!("## Godot image, texture, and sprite in {:#?}", godot_time)
     }
