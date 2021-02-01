@@ -68,3 +68,13 @@ base/stroke_length = 6.0
 base/axiom = "F"
 base/n = 5
 base/delta = 25.7
+
+[node name="TreeE" type="Node2D" parent="."]
+position = Vector2( 1486.51, 23.7842 )
+script = ExtResource( 1 )
+base/rules = "X:F[+X][-X]FX;F:FF"
+base/stroke_width = 3.0
+base/stroke_length = 6.0
+base/axiom = "X"
+base/n = 7
+base/delta = 25.7
