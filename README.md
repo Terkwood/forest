@@ -25,4 +25,4 @@ cargo build --release
 
 ## Additional Attributions
 
-Thanks to [mneumann](https://github.com/mneumann/lindenmayer-system) for the implementation of L-Systems.
+Thanks to [mneumann](https://github.com/mneumann/lindenmayer-system) for the implementation of L-Systems and Turtle Drawing.
