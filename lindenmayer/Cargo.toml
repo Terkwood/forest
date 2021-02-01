@@ -2,7 +2,7 @@
 authors = ["terkwood <38859656+Terkwood@users.noreply.github.com>"]
 edition = "2018"
 name = "lindenmayer"
-version = "0.4.0"
+version = "0.4.1"
 
 [dependencies]
 expression = "0.3.4"
@@ -10,5 +10,5 @@ expression-num = "0.2.3"
 rand = "0.7.3"
 resvg = "0.13.1"
 tiny-skia = "0.4.2"
-turtle-graphics = {git = "https://github.com/Terkwood/turtle-graphics-rs", branch = "hack/stroke-width"}
+turtle-crab = {git = "https://github.com/Terkwood/turtle-crab", tag = "v0.2.0"}
 usvg = "0.13.1"

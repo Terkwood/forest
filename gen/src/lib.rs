@@ -28,14 +28,14 @@ struct DrawTree {
     #[property(path = "base/rules")]
     rules: String,
     #[property(path = "base/stroke_width")]
-    stroke_width: u16,
+    stroke_width: f32,
     #[property(path = "base/stroke_length")]
     stroke_length: f32,
 }
 
 use lindenmayer::svg::DrawOptions;
 
-const DEFAULT_STROKE_WIDTH: u16 = 1;
+const DEFAULT_STROKE_WIDTH: f32 = 2.0;
 const DEFAULT_STROKE_LENGTH: f32 = 4.0;
 
 #[gdnative::methods]
@@ -65,8 +65,8 @@ impl DrawTree {
                         axiom,
                         n: self.n as usize,
                         rules,
-                        stroke_length: DEFAULT_STROKE_LENGTH,
-                        stroke_width: 1,
+                        stroke_length: self.stroke_length,
+                        stroke_width: self.stroke_width,
                         delta: self.delta,
                     },
                     owner,

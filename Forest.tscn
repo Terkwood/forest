@@ -10,11 +10,11 @@ __meta__ = {
 start X / iter 5 / delta 22.5 / X:F-[[X]+X]+F[+FX]-X;F:FF"
 }
 base/rules = "X:F[+X]F[-X]+X;F:FF"
+base/stroke_width = 4.0
 base/stroke_length = 4.0
-base/n = 7
 base/axiom = "X"
+base/n = 7
 base/delta = 22.5
-base/stroke_width = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 162.625, 54.0828 )
@@ -22,7 +22,7 @@ current = true
 zoom = Vector2( 2.6, 2.6 )
 
 [node name="AnotherTree" type="Node2D" parent="."]
-position = Vector2( 672, 432 )
+position = Vector2( 1166.59, 367.816 )
 scale = Vector2( 3, 3 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -30,19 +30,19 @@ __meta__ = {
 start X / iter 5 / delta 22.5 / X:F-[[X]+X]+F[+FX]-X;F:FF"
 }
 base/rules = "X:F-[[X]+X]+F[+FX]-X;F:FF"
-base/stroke_length = 12.0
-base/n = 5
+base/stroke_width = 4.0
+base/stroke_length = 8.0
 base/axiom = "X"
+base/n = 5
 base/delta = 22.5
-base/stroke_width = 9
 
 [node name="TreeC" type="Node2D" parent="."]
 position = Vector2( -850.366, 469.755 )
-scale = Vector2( 3, 5 )
+scale = Vector2( 3, 3 )
 script = ExtResource( 1 )
 base/rules = "F:FF-[-F+F+F]+[+F-F-F]"
-base/stroke_length = 20.0
-base/n = 4
+base/stroke_width = 2.0
+base/stroke_length = 8.0
 base/axiom = "F"
+base/n = 4
 base/delta = 22.5
-base/stroke_width = 1
