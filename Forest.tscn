@@ -2,7 +2,9 @@
 
 [ext_resource path="res://Forest.gdns" type="Script" id=1]
 
-[node name="Tree" type="Node2D"]
+[node name="TreeD" type="Node2D"]
+position = Vector2( 200.101, 173.673 )
+scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "start X / iter 7 / delta 20 / X:F[+X]F[-X]+X;F:FF
@@ -10,20 +12,19 @@ __meta__ = {
 start X / iter 5 / delta 22.5 / X:F-[[X]+X]+F[+FX]-X;F:FF"
 }
 base/rules = "X:F[+X]F[-X]+X;F:FF"
-base/stroke_width = 4.0
-base/stroke_length = 4.0
+base/stroke_width = 5.0
+base/stroke_length = 5.0
 base/axiom = "X"
 base/n = 7
-base/delta = 22.5
+base/delta = 20.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 162.625, 54.0828 )
+position = Vector2( 1802.74, -654.432 )
 current = true
 zoom = Vector2( 2.6, 2.6 )
 
-[node name="AnotherTree" type="Node2D" parent="."]
-position = Vector2( 1166.59, 367.816 )
-scale = Vector2( 3, 3 )
+[node name="TreeF" type="Node2D" parent="."]
+position = Vector2( 3044.73, -14.5155 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "
@@ -31,13 +32,13 @@ start X / iter 5 / delta 22.5 / X:F-[[X]+X]+F[+FX]-X;F:FF"
 }
 base/rules = "X:F-[[X]+X]+F[+FX]-X;F:FF"
 base/stroke_width = 4.0
-base/stroke_length = 8.0
+base/stroke_length = 16.0
 base/axiom = "X"
 base/n = 5
 base/delta = 22.5
 
 [node name="TreeC" type="Node2D" parent="."]
-position = Vector2( -850.366, 469.755 )
+position = Vector2( 3217.76, -1570.82 )
 scale = Vector2( 3, 3 )
 script = ExtResource( 1 )
 base/rules = "F:FF-[-F+F+F]+[+F-F-F]"
@@ -46,3 +47,34 @@ base/stroke_length = 8.0
 base/axiom = "F"
 base/n = 4
 base/delta = 22.5
+
+[node name="TreeB" type="Node2D" parent="."]
+position = Vector2( 1521.55, -1587.55 )
+script = ExtResource( 1 )
+base/rules = "F:F[+F]F[-F][F]"
+base/stroke_width = 4.0
+base/stroke_length = 20.0
+base/axiom = "F"
+base/n = 5
+base/delta = 20.0
+
+[node name="TreeA" type="Node2D" parent="."]
+position = Vector2( 59.4604, -1595.92 )
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 1 )
+base/rules = "F:F[+F]F[-F]F"
+base/stroke_width = 4.0
+base/stroke_length = 6.0
+base/axiom = "F"
+base/n = 5
+base/delta = 25.7
+
+[node name="TreeE" type="Node2D" parent="."]
+position = Vector2( 1486.51, 23.7842 )
+script = ExtResource( 1 )
+base/rules = "X:F[+X][-X]FX;F:FF"
+base/stroke_width = 3.0
+base/stroke_length = 6.0
+base/axiom = "X"
+base/n = 7
+base/delta = 25.7
