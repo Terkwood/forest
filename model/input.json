@@ -6,8 +6,8 @@
         "axiom": "F",
         "prods": [
             {
-                "in": "F",
-                "out": "F[+F]F[-F]F"
+                "input": "F",
+                "output": "F[+F]F[-F]F"
             }
         ]
     },
@@ -18,8 +18,8 @@
         "axiom": "F",
         "prods": [
             {
-                "in": "F",
-                "out": "F[+F]F[-F][F]"
+                "input": "F",
+                "output": "F[+F]F[-F][F]"
             }
         ]
     },
@@ -30,8 +30,8 @@
         "axiom": "F",
         "prods": [
             {
-                "in": "F",
-                "out": "FF-[-F+F+F]+[+F-F-F]"
+                "input": "F",
+                "output": "FF-[-F+F+F]+[+F-F-F]"
             }
         ]
     },
@@ -42,12 +42,12 @@
         "axiom": "X",
         "prods": [
             {
-                "in": "X",
-                "out": "F[+X]F[-X]+X"
+                "input": "X",
+                "output": "F[+X]F[-X]+X"
             },
             {
-                "in": "F",
-                "out": "FF"
+                "input": "F",
+                "output": "FF"
             }
         ]
     },
@@ -58,12 +58,12 @@
         "axiom": "X",
         "prods": [
             {
-                "in": "X",
-                "out": "F[+X][-X]FX"
+                "input": "X",
+                "output": "F[+X][-X]FX"
             },
             {
-                "in": "F",
-                "out": "FF"
+                "input": "F",
+                "output": "FF"
             }
         ]
     },
@@ -74,12 +74,12 @@
         "axiom": "X",
         "prods": [
             {
-                "in": "X",
-                "out": "F-[[X]+X]+F[+FX]-X"
+                "input": "X",
+                "output": "F-[[X]+X]+F[+FX]-X"
             },
             {
-                "in": "F",
-                "out": "FF"
+                "input": "F",
+                "output": "FF"
             }
         ]
     }
