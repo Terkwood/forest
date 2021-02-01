@@ -1,8 +1,8 @@
 # forest
 
-Draw a tree using Godot and rust. 🌳🤖🦀
+Draw simple L-System trees using Godot and rust. 🌳🤖🦀
 
-![ltree](https://user-images.githubusercontent.com/38859656/106359031-cce84280-62dd-11eb-9797-1c1c050ef83a.png)
+![forest_demo](https://user-images.githubusercontent.com/38859656/106504249-aa4c5a00-6494-11eb-8968-5ec347e91094.png)
 
 ## Dynamic image generation
 
