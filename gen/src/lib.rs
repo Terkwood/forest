@@ -5,7 +5,7 @@ mod timed;
 
 use gdnative::api::*;
 use gdnative::prelude::*;
-use lindenmayer::{png, svg};
+use lindenmayer::{tree, TreeOptions};
 use timed::timed;
 
 const PKG_NAME: &'static str = env!("CARGO_PKG_NAME");
@@ -33,8 +33,6 @@ struct DrawTree {
     stroke_length: f32,
 }
 
-use lindenmayer::svg::DrawOptions;
-
 const DEFAULT_STROKE_WIDTH: f32 = 2.0;
 const DEFAULT_STROKE_LENGTH: f32 = 4.0;
 
@@ -61,7 +59,7 @@ impl DrawTree {
         if let Some(axiom) = self.axiom.chars().nth(0) {
             if let Ok(rules) = parse_rules(&self.rules) {
                 self.draw(
-                    DrawOptions {
+                    TreeOptions {
                         axiom,
                         n: self.n as usize,
                         rules,
@@ -77,22 +75,19 @@ impl DrawTree {
         }
     }
 
-    fn draw(&self, opts: DrawOptions, owner: &Node) {
-        let (svg_bytes, svg_time) = timed(|| svg::draw_svg_utf8(opts));
-        godot_print!(".. SVG generation in {:#?} ..", svg_time);
-
-        let ((png_bytes, size), png_time) = timed(|| png::convert_svg_to_png_bytes(&svg_bytes));
-        godot_print!("!! PNG conversion in {:#?} !!", png_time);
+    fn draw(&self, opts: TreeOptions, owner: &Node) {
+        let (png_bytes, png_time) = timed(|| tree(opts));
+        godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
         let (_, godot_time) = timed(|| {
             let mut godot_bytes = ByteArray::new();
-            for b in png_bytes {
+            for b in png_bytes.bytes {
                 godot_bytes.push(b)
             }
             let image = Image::new();
 
             image.create_from_data(
-                size.width as i64,
-                size.height as i64,
+                png_bytes.size.width as i64,
+                png_bytes.size.height as i64,
                 false,
                 Image::FORMAT_RGBA8,
                 godot_bytes,
