@@ -142,7 +142,7 @@ impl DrawTreeSpatial {
             let mut plane_mesh = PlaneMesh::new();
 
             let mut spatial_material = unsafe { SpatialMaterial::new().assume_unique() };
-            todo!(); //spatial_material.albedo_texture.set_texture(todo!());
+            spatial_material.set_texture(0, image_texture);
 
             todo!(); //sprite.set_texture(image_texture.upcast::<Texture>());
 
