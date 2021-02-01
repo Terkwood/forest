@@ -69,21 +69,7 @@ impl DrawTree2D {
         let (png_bytes, png_time) = timed(|| tree(opts));
         godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
         let (_, godot_time) = timed(|| {
-            let mut godot_bytes = ByteArray::new();
-            for b in png_bytes.bytes {
-                godot_bytes.push(b)
-            }
-            let image = Image::new();
-
-            image.create_from_data(
-                png_bytes.size.width as i64,
-                png_bytes.size.height as i64,
-                false,
-                Image::FORMAT_RGBA8,
-                godot_bytes,
-            );
-            let image_texture = unsafe { ImageTexture::new().assume_unique() };
-            image_texture.create_from_image(image, 0);
+            let image_texture = create_image_texture(png_bytes);
 
             let sprite = Sprite::new();
             sprite.set_texture(image_texture.upcast::<Texture>());
@@ -149,21 +135,7 @@ impl DrawTreeSpatial {
         let (png_bytes, png_time) = timed(|| tree(opts));
         godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
         let (_, godot_time) = timed(|| {
-            let mut godot_bytes = ByteArray::new();
-            for b in png_bytes.bytes {
-                godot_bytes.push(b)
-            }
-            let image = Image::new();
-
-            image.create_from_data(
-                png_bytes.size.width as i64,
-                png_bytes.size.height as i64,
-                false,
-                Image::FORMAT_RGBA8,
-                godot_bytes,
-            );
-            let image_texture = unsafe { ImageTexture::new().assume_unique() };
-            image_texture.create_from_image(image, 0);
+            let image_texture = create_image_texture(png_bytes);
 
             let mesh_instance = MeshInstance::new();
 
@@ -173,8 +145,27 @@ impl DrawTreeSpatial {
 
             todo!() //owner.add_child(sprite.upcast::<Node>(), true)
         });
-        godot_print!("## Godot image, texture, and sprite in {:#?}", godot_time)
+        godot_print!("## Godot mesh in {:#?}", godot_time)
     }
+}
+
+fn create_image_texture(png_bytes: lindenmayer::PngBytes) -> Ref<ImageTexture, Unique> {
+    let mut godot_bytes = ByteArray::new();
+    for b in png_bytes.bytes {
+        godot_bytes.push(b)
+    }
+    let image = Image::new();
+
+    image.create_from_data(
+        png_bytes.size.width as i64,
+        png_bytes.size.height as i64,
+        false,
+        Image::FORMAT_RGBA8,
+        godot_bytes,
+    );
+    let image_texture = unsafe { ImageTexture::new().assume_unique() };
+    image_texture.create_from_image(image, 0);
+    image_texture
 }
 
 fn verify_axiom(axiom_godot_field: &str) -> Option<char> {
