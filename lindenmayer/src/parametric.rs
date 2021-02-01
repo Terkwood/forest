@@ -207,7 +207,7 @@ pub trait ParametricRule: Clone + Debug {
     fn symbol(&self) -> &<Self::InSym as ParametricSymbol>::Sym;
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct PRule<Sym, PS, PS2, C>
 where
     Sym: Alphabet,
