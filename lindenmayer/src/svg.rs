@@ -8,7 +8,7 @@ pub struct DrawOptions {
     pub delta: f32,
     pub rules: Vec<Rule>,
     pub n: usize,
-    pub stroke_width: u64,
+    pub stroke_width: f32,
     pub stroke_length: f32,
 }
 
@@ -22,6 +22,7 @@ pub fn draw_svg_utf8(draw_props: DrawOptions) -> Vec<u8> {
         INIT_DIRECTION,
         draw_props.delta,
         draw_props.stroke_length,
+        draw_props.stroke_width,
         &mut v,
     );
 
