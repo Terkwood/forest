@@ -17,17 +17,27 @@ func _ready():
 	$Tween.start()
 
 func _make_opposite_faces(img: Image, resize_x_ratio: float, rot_y: float):
-	var pm = PlaneMesh.new()
-	pm.size = Vector2(pm.size.x * resize_x_ratio, pm.size.y)
-	
-	var mi = MeshInstance.new()
-	var sm = SpatialMaterial.new()
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)
-	sm.albedo_texture = tex
-	sm.flags_transparent = true
-	pm.material = sm
+	
+	var first_sm = SpatialMaterial.new()
+	first_sm.albedo_texture = tex
+	first_sm.flags_transparent = true
+	
+	var first_face = _make_mesh_instance(first_sm, resize_x_ratio, rot_y)
+	add_child(first_face)
+	
+	var second_face = _make_mesh_instance(first_sm, resize_x_ratio, rot_y + 180, true)
+	add_child(second_face)
+	
+func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_x_ratio: float, rot_y: float, flip_faces: bool = false):
+	var pm = PlaneMesh.new()
+	pm.size = Vector2(pm.size.x * resize_x_ratio, pm.size.y)
+	var mi = MeshInstance.new()
+	pm.material = spatial_mat
 	mi.mesh = pm
 	mi.rotate_x(deg2rad(90))
 	mi.rotate_y(deg2rad(rot_y))
-	add_child(mi)
+	if flip_faces:
+		pm.flip_faces = true
+	return mi
