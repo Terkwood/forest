@@ -6,6 +6,6 @@ assigned to various meshes made in 3D.
 
 ## trivia
 
-We would have written the 3D mesh-assignment using rust
+We might have written the 3D mesh-assignment using rust
 bindings, but it was hard to understand how to manipulate
 albedo texture on a spatial material. 
