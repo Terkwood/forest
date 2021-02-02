@@ -27,7 +27,7 @@ func _make_opposite_faces(img: Image, resize_x_ratio: float, rot_y: float):
 	var first_face = _make_mesh_instance(first_sm, resize_x_ratio, rot_y)
 	add_child(first_face)
 	
-	var second_face = _make_mesh_instance(first_sm, resize_x_ratio, rot_y + 180, true)
+	var second_face = _make_mesh_instance(first_sm, resize_x_ratio, rot_y, true)
 	add_child(second_face)
 	
 func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_x_ratio: float, rot_y: float, flip_faces: bool = false):
