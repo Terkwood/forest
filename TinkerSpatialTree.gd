@@ -7,9 +7,11 @@ func _ready():
 		return
 	
 	print("well the image has width %d and height %d" % [img.get_width(), img.get_height()])
+	var resize_x_ratio = 1.0 * img.get_width() / img.get_height()
+	var pm = PlaneMesh.new()
+	pm.size = Vector2(pm.size.x * resize_x_ratio, pm.size.y)
 	
 	var mi = MeshInstance.new()
-	var pm = PlaneMesh.new()
 	var sm = SpatialMaterial.new()
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)
