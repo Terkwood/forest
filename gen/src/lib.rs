@@ -131,6 +131,32 @@ impl DrawTreeSpatial {
         }
     }
 
+    #[export]
+    pub fn hack(&self, _owner: &Node) -> Ref<ImageTexture, Unique> {
+        if let Some(axiom) = verify_axiom(&self.axiom) {
+            if let Ok(rules) = parse_rules(&self.rules) {
+                let opts = TreeOptions {
+                    axiom,
+                    n: self.n as usize,
+                    rules,
+                    stroke_length: self.stroke_length,
+                    stroke_width: self.stroke_width,
+                    delta: self.delta,
+                };
+
+                let (png_bytes, png_time) = timed(|| tree(opts));
+                godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
+
+                return create_image_texture(png_bytes);
+            }
+        } else {
+            godot_error!("NO START CHAR PROVIDED");
+        }
+
+        godot_error!("ERR");
+        ImageTexture::new()
+    }
+
     fn draw(&self, opts: TreeOptions, owner: &Node) {
         let (png_bytes, png_time) = timed(|| tree(opts));
         godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
