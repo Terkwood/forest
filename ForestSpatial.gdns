@@ -4,5 +4,5 @@
 
 [resource]
 resource_name = "DrawTree"
-class_name = "DrawTree2D"
+class_name = "DrawTreeSpatial"
 library = ExtResource( 1 )

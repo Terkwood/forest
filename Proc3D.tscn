@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://SpatialTree.gd" type="Script" id=1]
+[ext_resource path="res://ForestSpatial.gdns" type="Script" id=2]
+
+[node name="Proc3D" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.61637 )
+fov = 92.2227
+
+[node name="SpatialTree" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.533641, 0 )
+script = ExtResource( 1 )
+
+[node name="NativeHelp" type="Spatial" parent="SpatialTree"]
+script = ExtResource( 2 )
+base/axiom = "X"
+base/stroke_length = 10.0
+base/stroke_width = 4.0
+base/n = 7
+base/delta = 25.7
+base/rules = "X:F[+X][-X]FX;F:FF"
+
+[node name="Tween" type="Tween" parent="SpatialTree"]
+repeat = true
+playback/repeat = true
