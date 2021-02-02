@@ -19,5 +19,7 @@ func _ready():
 	sm.flags_transparent = true
 	pm.material = sm
 	mi.mesh = pm
+	mi.rotate_x(deg2rad(90))
+	
 	add_child(mi)
 	

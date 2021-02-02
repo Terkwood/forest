@@ -5,17 +5,8 @@
 
 [node name="Proc3D" type="Spatial"]
 
-[node name="TreeE" type="Spatial" parent="."]
-script = ExtResource( 2 )
-base/axiom = "X"
-base/stroke_length = 10.0
-base/stroke_width = 4.0
-base/n = 7
-base/delta = 25.7
-base/rules = "X:F[+X][-X]FX;F:FF"
-
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.00109954, 0.999999, 0, -0.999999, 0.00109954, 0, 2.83608, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.61637 )
 fov = 92.2227
 
 [node name="TinkerSpatialTree" type="Spatial" parent="."]
