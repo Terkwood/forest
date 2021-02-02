@@ -6,15 +6,15 @@ func _ready():
 		printerr("image wasn't created")
 		return
 
-	var resize_x_ratio = 1.0 * img.get_width() / img.get_height()
+	var resize_y_ratio = 1.0 * img.get_height() / img.get_width()
 	
 	for rotate_y in [0, 90]:
-		_make_opposite_faces(img, resize_x_ratio, rotate_y)
+		_make_opposite_faces(img, resize_y_ratio, rotate_y)
 
 	$Tween.interpolate_property(self,"rotation_degrees:y", 0, 360, 4, Tween.TRANS_LINEAR)
 	$Tween.start()
 
-func _make_opposite_faces(img: Image, resize_x_ratio: float, rot_y: float):
+func _make_opposite_faces(img: Image, resize_y_ratio: float, rot_y: float):
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)
 	
@@ -22,15 +22,15 @@ func _make_opposite_faces(img: Image, resize_x_ratio: float, rot_y: float):
 	first_sm.albedo_texture = tex
 	first_sm.flags_transparent = true
 	
-	var first_face = _make_mesh_instance(first_sm, resize_x_ratio, rot_y)
+	var first_face = _make_mesh_instance(first_sm, resize_y_ratio, rot_y)
 	add_child(first_face)
 	
-	var second_face = _make_mesh_instance(first_sm, resize_x_ratio, rot_y, true)
+	var second_face = _make_mesh_instance(first_sm, resize_y_ratio, rot_y, true)
 	add_child(second_face)
 	
-func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_x_ratio: float, rot_y: float, flip_faces: bool = false):
+func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_y_ratio: float, rot_y: float, flip_faces: bool = false):
 	var pm = PlaneMesh.new()
-	pm.size = Vector2(pm.size.x * resize_x_ratio, pm.size.y)
+	pm.size = Vector2(pm.size.x, pm.size.y * resize_y_ratio)
 	var mi = MeshInstance.new()
 	pm.material = spatial_mat
 	mi.mesh = pm
