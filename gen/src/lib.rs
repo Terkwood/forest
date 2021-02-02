@@ -114,20 +114,20 @@ impl DrawTreeSpatial {
     }
 
     #[export]
-    pub fn make_texture(&self, _owner: &Node) -> Ref<ImageTexture, Unique> {
+    pub fn make_image(&self, _owner: &Node) -> Ref<Image, Unique> {
         if let Some(axiom) = verify_axiom(&self.axiom) {
             if let Ok(rules) = parse_rules(&self.rules) {
                 let (png_bytes, png_time) = timed(|| tree(self.options(axiom, rules)));
                 godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
 
-                return create_image_texture(png_bytes);
+                return create_image(png_bytes);
             }
         } else {
             godot_error!("NO START CHAR PROVIDED");
         }
 
         godot_error!("ERR");
-        ImageTexture::new()
+        Image::new()
     }
 
     fn options(&self, axiom: char, rules: Vec<Rule>) -> TreeOptions {
@@ -142,7 +142,7 @@ impl DrawTreeSpatial {
     }
 }
 
-fn create_image_texture(png_bytes: lindenmayer::PngBytes) -> Ref<ImageTexture, Unique> {
+fn create_image(png_bytes: lindenmayer::PngBytes) -> Ref<Image, Unique> {
     let mut godot_bytes = ByteArray::new();
     for b in png_bytes.bytes {
         godot_bytes.push(b)
@@ -156,6 +156,13 @@ fn create_image_texture(png_bytes: lindenmayer::PngBytes) -> Ref<ImageTexture, U
         Image::FORMAT_RGBA8,
         godot_bytes,
     );
+
+    image
+}
+
+fn create_image_texture(png_bytes: lindenmayer::PngBytes) -> Ref<ImageTexture, Unique> {
+    let image = create_image(png_bytes);
+
     let image_texture = ImageTexture::new();
     image_texture.create_from_image(image, 0);
     image_texture
