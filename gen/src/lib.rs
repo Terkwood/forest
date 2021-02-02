@@ -48,20 +48,12 @@ impl DrawTree2D {
     fn _ready(&self, owner: &Node) {
         if let Some(axiom) = verify_axiom(&self.axiom) {
             if let Ok(rules) = parse_rules(&self.rules) {
-                self.draw(
-                    TreeOptions {
-                        axiom,
-                        n: self.n as usize,
-                        rules,
-                        stroke_length: self.stroke_length,
-                        stroke_width: self.stroke_width,
-                        delta: self.delta,
-                    },
-                    owner,
-                )
+                self.draw(self.options(axiom, rules), owner)
+            } else {
+                godot_error!("TREE: INVALID RULES")
             }
         } else {
-            godot_error!("NO START CHAR PROVIDED")
+            godot_error!("TREE: INVALID AXIOM")
         }
     }
 
@@ -77,6 +69,17 @@ impl DrawTree2D {
             owner.add_child(sprite.upcast::<Node>(), true)
         });
         godot_print!("## Godot image, texture, and sprite in {:#?}", godot_time)
+    }
+
+    fn options(&self, axiom: char, rules: Vec<Rule>) -> TreeOptions {
+        TreeOptions {
+            axiom,
+            n: self.n as usize,
+            rules,
+            stroke_length: self.stroke_length,
+            stroke_width: self.stroke_width,
+            delta: self.delta,
+        }
     }
 }
 
@@ -111,40 +114,10 @@ impl DrawTreeSpatial {
     }
 
     #[export]
-    fn _ideally_ready(&self, owner: &Node) {
+    pub fn make_texture(&self, _owner: &Node) -> Ref<ImageTexture, Unique> {
         if let Some(axiom) = verify_axiom(&self.axiom) {
             if let Ok(rules) = parse_rules(&self.rules) {
-                self.draw(
-                    TreeOptions {
-                        axiom,
-                        n: self.n as usize,
-                        rules,
-                        stroke_length: self.stroke_length,
-                        stroke_width: self.stroke_width,
-                        delta: self.delta,
-                    },
-                    owner,
-                )
-            }
-        } else {
-            godot_error!("NO START CHAR PROVIDED")
-        }
-    }
-
-    #[export]
-    pub fn hack(&self, _owner: &Node) -> Ref<ImageTexture, Unique> {
-        if let Some(axiom) = verify_axiom(&self.axiom) {
-            if let Ok(rules) = parse_rules(&self.rules) {
-                let opts = TreeOptions {
-                    axiom,
-                    n: self.n as usize,
-                    rules,
-                    stroke_length: self.stroke_length,
-                    stroke_width: self.stroke_width,
-                    delta: self.delta,
-                };
-
-                let (png_bytes, png_time) = timed(|| tree(opts));
+                let (png_bytes, png_time) = timed(|| tree(self.options(axiom, rules)));
                 godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
 
                 return create_image_texture(png_bytes);
@@ -157,25 +130,15 @@ impl DrawTreeSpatial {
         ImageTexture::new()
     }
 
-    fn draw(&self, opts: TreeOptions, owner: &Node) {
-        let (png_bytes, png_time) = timed(|| tree(opts));
-        godot_print!("!! Tree PNG bytes generated in {:#?} !!", png_time);
-        let (_, godot_time) = timed(|| {
-            let image_texture = create_image_texture(png_bytes);
-
-            let mesh_instance = MeshInstance::new();
-
-            let plane_mesh = PlaneMesh::new();
-
-            let spatial_material = SpatialMaterial::new();
-            spatial_material.set_flag(SpatialMaterial::FEATURE_TRANSPARENT, true);
-            spatial_material.set_texture(0, image_texture.upcast::<Texture>());
-            plane_mesh.set_material(spatial_material);
-            mesh_instance.set_mesh(plane_mesh);
-
-            owner.add_child(mesh_instance.upcast::<Node>(), true)
-        });
-        godot_print!("## mesh created in {:#?}", godot_time)
+    fn options(&self, axiom: char, rules: Vec<Rule>) -> TreeOptions {
+        TreeOptions {
+            axiom,
+            n: self.n as usize,
+            rules,
+            stroke_length: self.stroke_length,
+            stroke_width: self.stroke_width,
+            delta: self.delta,
+        }
     }
 }
 

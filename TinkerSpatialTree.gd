@@ -1,7 +1,7 @@
 extends Spatial
 
 func _ready():
-	var tex:ImageTexture = $NativeHelp.hack()
+	var tex:ImageTexture = $NativeHelp.make_texture()
 	if tex:
 		print("tex flags %d" % tex.flags)
 	else:
