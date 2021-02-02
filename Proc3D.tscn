@@ -6,7 +6,7 @@
 [node name="Proc3D" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.35544 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.61637 )
 fov = 92.2227
 
 [node name="SpatialTree" type="Spatial" parent="."]
@@ -15,12 +15,12 @@ script = ExtResource( 1 )
 
 [node name="NativeHelp" type="Spatial" parent="SpatialTree"]
 script = ExtResource( 2 )
-base/axiom = "F"
+base/axiom = "X"
 base/stroke_length = 10.0
 base/stroke_width = 4.0
-base/n = 4
-base/delta = 22.5
-base/rules = "F:FF-[-F+F+F]+[+F-F-F]"
+base/n = 7
+base/delta = 25.7
+base/rules = "X:F[+X][-X]FX;F:FF"
 
 [node name="Tween" type="Tween" parent="SpatialTree"]
 repeat = true
