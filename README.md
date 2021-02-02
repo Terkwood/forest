@@ -4,6 +4,8 @@ Draw simple L-System trees using Godot and rust. 🌳🤖🦀
 
 ![forest_demo](https://user-images.githubusercontent.com/38859656/106504249-aa4c5a00-6494-11eb-8968-5ec347e91094.png)
 
+![3d demo](https://user-images.githubusercontent.com/38859656/106643338-987fbb00-6557-11eb-8073-a74835f75184.gif)
+
 ## Dynamic image generation
 
 This project implements procedural drawing of trees in [Godot engine](https://godotengine.org/) using [Lindenmayer Systems](http://algorithmicbotany.org/papers/#abop).
