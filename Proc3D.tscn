@@ -10,6 +10,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.61637 )
 fov = 92.2227
 
 [node name="TinkerSpatialTree" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.533641, 0 )
 script = ExtResource( 1 )
 
 [node name="NativeHelp" type="Spatial" parent="TinkerSpatialTree"]
