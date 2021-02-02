@@ -23,3 +23,6 @@ func _ready():
 	
 	add_child(mi)
 	
+
+	$Tween.interpolate_property(self,"rotation_degrees:y", 0, 360, 4, Tween.TRANS_LINEAR)
+	$Tween.start()
