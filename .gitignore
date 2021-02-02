@@ -4,6 +4,7 @@ target/
 Cargo.lock
 
 # Godot-specific ignores
+*.log
 *.import
 .import/
 export.cfg

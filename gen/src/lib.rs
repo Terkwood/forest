@@ -111,7 +111,7 @@ impl DrawTreeSpatial {
     }
 
     #[export]
-    fn _ready(&self, owner: &Node) {
+    fn _ideally_ready(&self, owner: &Node) {
         if let Some(axiom) = verify_axiom(&self.axiom) {
             if let Ok(rules) = parse_rules(&self.rules) {
                 self.draw(
