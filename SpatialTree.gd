@@ -5,13 +5,11 @@ func _ready():
 	if img == null:
 		printerr("image wasn't created")
 		return
-	
-	print("well the image has width %d and height %d" % [img.get_width(), img.get_height()])
+
 	var resize_x_ratio = 1.0 * img.get_width() / img.get_height()
 	
 	for rotate_y in [0, 90]:
 		_make_opposite_faces(img, resize_x_ratio, rotate_y)
-	
 
 	$Tween.interpolate_property(self,"rotation_degrees:y", 0, 360, 4, Tween.TRANS_LINEAR)
 	$Tween.start()
