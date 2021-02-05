@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="forest"
-run/main_scene="res://Forest.tscn"
+run/main_scene="res://Proc3D.tscn"
 config/icon="res://icon.png"
 
 [display]
