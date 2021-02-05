@@ -7,7 +7,7 @@ func _ready():
 		return
 	
 	var center_along_bottom = _guess_center_along_bottom(img)
-	print("center? %d" % center_along_bottom)
+	print("center? %f" % center_along_bottom)
 
 	var resize_y_ratio = 1.0 * img.get_height() / img.get_width()
 	
@@ -53,16 +53,19 @@ func _guess_center_along_bottom(img: Image) -> float:
 	if img.is_empty():
 		return DEFAULT_CENTER
 	var w = img.get_width()
-	var last_row = img.get_height() - 1
+	var last_row = img.get_height() - 1000
 	var found_col = 0
 	
+	print("img w %d,h %d" % [img.get_width(),img.get_height()])
+	print("used %s" % img.get_used_rect())
 	img.lock()
 	for x in range(0,w):
 		var c = img.get_pixel(x,last_row)
-		print("pixel %s" % c)
-		if c.a != 0.0:
+		if c.a != 0:
+			print("pixel %s" % c)
 			found_col = x
+			print("tried %d" % x)
 			break
 	img.unlock()
 	
-	return found_col / w
+	return found_col / w * 1.0
