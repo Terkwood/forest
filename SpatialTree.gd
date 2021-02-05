@@ -1,10 +1,11 @@
 extends Spatial
 
 func _ready():
-	var img:Image = $NativeHelp.make_image()
-	if img == null:
+	var img_with_blank_space:Image = $NativeHelp.make_image()
+	if img_with_blank_space == null:
 		printerr("image wasn't created")
 		return
+	var img = img_with_blank_space.get_rect(img_with_blank_space.get_used_rect())
 	
 	var center_along_bottom = _guess_center_along_bottom(img)
 	print("center? %f" % center_along_bottom)
@@ -53,7 +54,7 @@ func _guess_center_along_bottom(img: Image) -> float:
 	if img.is_empty():
 		return DEFAULT_CENTER
 	var w = img.get_width()
-	var last_row = img.get_height() - 1000
+	var last_row = img.get_height() - 1
 	var found_col = 0
 	
 	print("img w %d,h %d" % [img.get_width(),img.get_height()])
