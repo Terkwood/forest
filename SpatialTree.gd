@@ -57,16 +57,12 @@ func _guess_center_along_bottom(img: Image) -> float:
 	var last_row = img.get_height() - 1
 	var found_col = 0
 	
-	print("img w %d,h %d" % [img.get_width(),img.get_height()])
-	print("used %s" % img.get_used_rect())
 	img.lock()
 	for x in range(0,w):
 		var c = img.get_pixel(x,last_row)
 		if c.a != 0:
-			print("pixel %s" % c)
 			found_col = x
-			print("tried %d" % x)
 			break
 	img.unlock()
 	
-	return found_col / w * 1.0
+	return found_col * 1.0 / w * 1.0
