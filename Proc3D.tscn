@@ -15,12 +15,12 @@ script = ExtResource( 1 )
 
 [node name="NativeHelp" type="Spatial" parent="SpatialTree"]
 script = ExtResource( 2 )
-base/axiom = "X"
-base/stroke_length = 10.0
-base/stroke_width = 4.0
-base/n = 7
 base/delta = 25.7
+base/stroke_length = 10.0
 base/rules = "X:F[+X][-X]FX;F:FF"
+base/axiom = "X"
+base/n = 7
+base/stroke_width = 4.0
 
 [node name="Tween" type="Tween" parent="SpatialTree"]
 repeat = true
