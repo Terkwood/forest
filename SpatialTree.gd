@@ -7,9 +7,7 @@ func _ready():
 		return
 	var img = img_with_blank_space.get_rect(img_with_blank_space.get_used_rect())
 	
-	var center_along_bottom = _guess_center_along_bottom(img)
-	print("center? %f" % center_along_bottom)
-	var translate_x = 0.5 - center_along_bottom
+	var translate_x = 0.5 - _guess_center_along_bottom(img)
 
 	var resize_y_ratio = 1.0 * img.get_height() / img.get_width()
 	
