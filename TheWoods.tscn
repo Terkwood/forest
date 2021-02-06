@@ -6,5 +6,6 @@
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.34202, 0.163176, -0.925417, 0, 0.984808, 0.173648, 0.939693, 0.0593911, -0.336824, -3.45288, 5.86795, 9.17326 )
+transform = Transform( 1, 0, 0, 0, 0.880544, 0.473965, 0, -0.473965, 0.880544, 16.2379, 6.21972, 38.4473 )
 current = true
+fov = 90.8

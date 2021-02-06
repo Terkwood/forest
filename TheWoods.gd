@@ -32,7 +32,11 @@ func _make_samples():
 	_samples.push_front(b)
 	
 	var c = TreeParams.new()
-	#_samples.push_front(c)
+	c.rules = "F:FF-[-F+F+F]+[+F-F-F]"
+	c.axiom = "F"
+	c.delta = 22.5
+	c.n = 4
+	_samples.push_front(c)
 	
 	var d = TreeParams.new()
 	#_samples.push_front(d)
@@ -57,4 +61,5 @@ func _ready():
 			tree.stroke_length = sample.stroke_length
 			tree.stroke_width = sample.stroke_width
 			tree.translate(Vector3(i * SPACING, 0, j * SPACING))
+			tree.rotate_y(deg2rad(randf() * 360))
 			add_child(tree)
