@@ -2,7 +2,7 @@ extends Spatial
 
 const SpatialTree = preload("res://SpatialTree.tscn")
 
-const ROWS = 10
+const ROWS = 3
 const COLS = 10
 const SPACING = 4
 
