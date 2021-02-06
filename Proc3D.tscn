@@ -5,7 +5,7 @@
 [node name="Proc3D" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.992377, 0.123238, 0, -0.123238, 0.992377, 0, 1.7047, 3.9281 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39144, 3.9281 )
 fov = 92.2227
 
 [node name="SpatialTree" parent="." instance=ExtResource( 1 )]
