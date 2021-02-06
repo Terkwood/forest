@@ -15,7 +15,3 @@ base/rules = "F:FF-[-F+F+F]+[+F-F-F]"
 base/axiom = "F"
 base/n = 4
 base/stroke_width = 4.0
-
-[node name="Tween" type="Tween" parent="."]
-repeat = true
-playback/repeat = true
