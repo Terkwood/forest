@@ -39,13 +39,25 @@ func _make_samples():
 	_samples.push_front(c)
 	
 	var d = TreeParams.new()
-	#_samples.push_front(d)
+	d.axiom = "X"
+	d.rules = "X:F[+X]F[-X]+X;F:FF"
+	d.n = 7
+	d.delta = 20.0
+	_samples.push_front(d)
 	
 	var e = TreeParams.new()
-	#_samples.push_front(e)
+	e.delta = 25.7
+	e.axiom = "X"
+	e.rules = "X:F[+X][-X]FX;F:FF"
+	e.n = 7
+	_samples.push_front(e)
 	
 	var f = TreeParams.new()
-	#_samples.push_front(f)
+	f.axiom = "X"
+	f.delta = 22.5
+	f.rules = "X:F-[[X]+X]+F[+FX]-X;F:FF"
+	f.n = 5
+	_samples.push_front(f)
 
 func _ready():
 	_make_samples()
