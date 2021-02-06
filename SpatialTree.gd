@@ -1,4 +1,4 @@
-extends Spatial
+extends MeshInstance
 
 export var stroke_width = 2.0
 export var stroke_length = 4.0
@@ -6,6 +6,8 @@ export var axiom = "F"
 export var n = 4
 export var delta = 22.5
 export var rules = "F:FF-[-F+F+F]+[+F-F-F]"
+
+var _faces = []
 
 func _ready():
 	$NativeHelp.set("base/rules", rules)
@@ -28,6 +30,8 @@ func _ready():
 	for rotate_y in [0, 90]:
 		_make_opposite_faces(img, resize_y_ratio, rotate_y, translate_x)
 
+	mesh = _faces[0].mesh
+
 	$Tween.interpolate_property(self,"rotation_degrees:y", 0, 360, 4, Tween.TRANS_LINEAR)
 	$Tween.start()
 
@@ -44,6 +48,9 @@ func _make_opposite_faces(img: Image, resize_y_ratio: float, rot_y: float, trans
 	
 	var second_face = _make_mesh_instance(first_sm, resize_y_ratio, rot_y, translate_x, true)
 	add_child(second_face)
+	
+	_faces.push_front(first_face)
+	_faces.push_front(second_face)
 	
 func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_y_ratio: float, rot_y: float, translate_x: float, flip_faces: bool = false) -> MeshInstance:
 	var pm = PlaneMesh.new()

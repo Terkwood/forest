@@ -3,7 +3,7 @@
 [ext_resource path="res://ForestSpatial.gdns" type="Script" id=1]
 [ext_resource path="res://SpatialTree.gd" type="Script" id=2]
 
-[node name="SpatialTree" type="Spatial"]
+[node name="SpatialTree" type="MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29621, 0 )
 script = ExtResource( 2 )
 

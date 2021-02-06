@@ -16,13 +16,17 @@ _global_script_class_icons={
 [application]
 
 config/name="forest"
-run/main_scene="res://Proc3D.tscn"
+run/main_scene="res://ScatterWoods.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
+
+[editor_plugins]
+
+enabled=PoolStringArray( "scatter" )
 
 [rendering]
 
