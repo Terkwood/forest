@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://SpatialTree.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Proc3D.gd" type="Script" id=2]
 
 [node name="Proc3D" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39144, 3.9281 )
@@ -12,3 +14,5 @@ fov = 92.2227
 n = 5
 delta = 25.8
 rules = "F:F[+F]F[-F]F"
+
+[node name="Tween" type="Tween" parent="."]

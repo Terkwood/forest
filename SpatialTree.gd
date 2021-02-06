@@ -28,8 +28,6 @@ func _ready():
 	for rotate_y in [0, 90]:
 		_make_opposite_faces(img, resize_y_ratio, rotate_y, translate_x)
 
-	$Tween.interpolate_property(self,"rotation_degrees:y", 0, 360, 4, Tween.TRANS_LINEAR)
-	$Tween.start()
 
 func _make_opposite_faces(img: Image, resize_y_ratio: float, rot_y: float, translate_x: float):
 	var tex = ImageTexture.new()
