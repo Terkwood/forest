@@ -8,6 +8,13 @@ export var delta = 22.5
 export var rules = "F:FF-[-F+F+F]+[+F-F-F]"
 
 func _ready():
+	$NativeHelp.set("base/rules", rules)
+	$NativeHelp.set("base/axiom", axiom)
+	$NativeHelp.set("base/n", n)
+	$NativeHelp.set("base/delta", delta)
+	$NativeHelp.set("base/stroke_width", stroke_width)
+	$NativeHelp.set("base/stroke_length", stroke_length)
+	
 	var img_with_blank_space:Image = $NativeHelp.make_image()
 	if img_with_blank_space == null:
 		printerr("image wasn't created")
