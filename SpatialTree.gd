@@ -1,5 +1,12 @@
 extends Spatial
 
+export var stroke_width = 2.0
+export var stroke_length = 4.0
+export var axiom = "F"
+export var n = 4
+export var delta = 22.5
+export var rules = "F:FF-[-F+F+F]+[+F-F-F]"
+
 func _ready():
 	var img_with_blank_space:Image = $NativeHelp.make_image()
 	if img_with_blank_space == null:
