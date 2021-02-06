@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ForestSpatial.gdns" type="Script" id=1]
+[ext_resource path="res://SpatialTree.gd" type="Script" id=2]
+
+[node name="SpatialTree" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29621, 0 )
+script = ExtResource( 2 )
+
+[node name="NativeHelp" type="Spatial" parent="."]
+script = ExtResource( 1 )
+base/delta = 22.5
+base/stroke_length = 10.0
+base/rules = "F:FF-[-F+F+F]+[+F-F-F]"
+base/axiom = "F"
+base/n = 4
+base/stroke_width = 4.0
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
