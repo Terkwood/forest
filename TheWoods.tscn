@@ -1,11 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://TheWoods.gd" type="Script" id=1]
+
+[sub_resource type="Environment" id=1]
 
 [node name="TheWoods" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.880544, 0.473965, 0, -0.473965, 0.880544, 16.2379, 6.21972, 38.4473 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5743, 1.37653, 38.0869 )
 current = true
 fov = 90.8
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
