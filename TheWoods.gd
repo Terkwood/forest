@@ -62,11 +62,9 @@ func _ready():
 	
 	for i in range(0,ROWS):
 		for j in range(0, COLS):
-			var start_time = OS.get_ticks_msec()
 			var tree = SpatialTree.instance()
 			tree.image_cache_path = NodePath("%s/%s" % [get_path() , "/ImageCache"])
 			var sample = _samples[randi()%_samples.size()]
-			print("sample hash: %d" % hash(sample) )
 			tree.n = sample.n
 			tree.rules = sample.rules
 			tree.axiom = sample.axiom
@@ -76,7 +74,6 @@ func _ready():
 			tree.translate(Vector3(i * SPACING, 0, j * SPACING))
 			tree.rotate_y(deg2rad(randf() * 360))
 			add_child(tree)
-			print("TheWoods single tree creation took %d" % (OS.get_ticks_msec() - start_time))
 
 const MOVE = 0.1
 var movement = Vector2(0,0)
