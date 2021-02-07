@@ -2,11 +2,11 @@ extends Spatial
 
 const SpatialTree = preload("res://SpatialTree.tscn")
 const TreeParams = preload("res://TreeParams.gd")
+const ImageCache = preload("res://ImageCache.gd")
 
-const ROWS = 3
+const ROWS = 10
 const COLS = 10
 const SPACING = 4
-
 
 var _samples = []
 
@@ -55,11 +55,16 @@ func _make_samples():
 
 func _ready():
 	_make_samples()
+	var image_cache = ImageCache.new()
+	image_cache.name = "ImageCache"
+	add_child(image_cache)
+	print("%s" % self.get_children()[2].name)
 	
 	for i in range(0,ROWS):
 		for j in range(0, COLS):
 			var start_time = OS.get_ticks_msec()
 			var tree = SpatialTree.instance()
+			tree.image_cache_path = NodePath("%s/%s" % [get_path() , "/ImageCache"])
 			var sample = _samples[randi()%_samples.size()]
 			print("sample hash: %d" % hash(sample) )
 			tree.n = sample.n

@@ -6,22 +6,14 @@ export var axiom = "F"
 export var n = 4
 export var delta = 22.5
 export var rules = "F:FF-[-F+F+F]+[+F-F-F]"
+export var image_cache_path: NodePath
+
+const TreeParams = preload("res://TreeParams.gd")
 
 func _ready():
-	$NativeHelp.set("base/rules", rules)
-	$NativeHelp.set("base/axiom", axiom)
-	$NativeHelp.set("base/n", n)
-	$NativeHelp.set("base/delta", delta)
-	$NativeHelp.set("base/stroke_width", stroke_width)
-	$NativeHelp.set("base/stroke_length", stroke_length)
-	
 	var make_image_start_time = OS.get_ticks_msec()
-	var img_with_blank_space:Image = $NativeHelp.make_image()
-	if img_with_blank_space == null:
-		printerr("image wasn't created")
-		return
-	var img = img_with_blank_space.get_rect(img_with_blank_space.get_used_rect())
-	print("make image and get rect took %d" % (OS.get_ticks_msec() - make_image_start_time))
+	var img = _cached_make_image()
+	print("make image took %d" % (OS.get_ticks_msec() - make_image_start_time))
 	
 	var translate_x = 0.5 - _guess_center_along_bottom(img)
 
@@ -81,3 +73,34 @@ func _guess_center_along_bottom(img: Image) -> float:
 	img.unlock()
 	
 	return found_col * 1.0 / w * 1.0
+
+func _cached_make_image():
+	var params = TreeParams.new()
+	params.stroke_length = stroke_length
+	params.stroke_width = stroke_width
+	params.n = n
+	params.delta = delta
+	params.axiom = axiom
+	params.rules = rules
+	var cache_node = get_node_or_null(image_cache_path)
+	if cache_node and cache_node.cache and cache_node.cache.has(hash(params)):
+		print("CACHE HIT %d" % hash(params))
+		return cache_node.cache[hash(params)]
+	else:
+		$NativeHelp.set("base/rules", rules)
+		$NativeHelp.set("base/axiom", axiom)
+		$NativeHelp.set("base/n", n)
+		$NativeHelp.set("base/delta", delta)
+		$NativeHelp.set("base/stroke_width", stroke_width)
+		$NativeHelp.set("base/stroke_length", stroke_length)
+	
+		var make_image_start_time = OS.get_ticks_msec()
+	
+		var img_with_blank_space:Image = $NativeHelp.make_image()
+		if img_with_blank_space == null:
+			printerr("image wasn't created")
+			return
+		var final_img = img_with_blank_space.get_rect(img_with_blank_space.get_used_rect())
+		if cache_node:
+			cache_node.cache[hash(params)] = final_img
+		return final_img
