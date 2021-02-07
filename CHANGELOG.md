@@ -1,6 +1,7 @@
 # next: v0.5.1
 
-Align the bottom of the trees. (#44, #45)
+- Raise the camera in TheWoods (#46)
+- Align the bottom of the trees (#44, #45)
 
 # v0.5.0
 
