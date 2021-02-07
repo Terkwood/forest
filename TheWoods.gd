@@ -58,7 +58,6 @@ func _ready():
 	var image_cache = ImageCache.new()
 	image_cache.name = "ImageCache"
 	add_child(image_cache)
-	print("%s" % self.get_children()[2].name)
 	
 	for i in range(0,ROWS):
 		for j in range(0, COLS):
