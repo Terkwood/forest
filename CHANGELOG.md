@@ -1,3 +1,7 @@
+# next: v0.6.0
+
+- Add image cache layer to SpatialTree.gd (#47, #48)
+
 # v0.5.1
 
 - Raise the camera in TheWoods (#46)
