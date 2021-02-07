@@ -1,4 +1,4 @@
 extends Node
 
-# hash(TreeParams) -> Image
+# hash(TreeParams.id()) -> Image
 var cache = {}
