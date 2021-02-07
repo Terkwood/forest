@@ -52,7 +52,7 @@ func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_y_ratio: float, ro
 	mi.mesh = pm
 	mi.rotate_x(deg2rad(90))
 	mi.rotate_y(deg2rad(rot_y))
-	mi.translate(Vector3(translate_x * size.x, 0, 0))
+	mi.translate(Vector3(translate_x * size.x, 0, size.y / -2.0))
 	if flip_faces:
 		pm.flip_faces = true
 	return mi
