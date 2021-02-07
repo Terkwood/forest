@@ -58,11 +58,12 @@ func _ready():
 	var image_cache = ImageCache.new()
 	image_cache.name = "ImageCache"
 	add_child(image_cache)
+	var tree_image_cache_path = NodePath("%s/%s" % [get_path() , "/ImageCache"])
 	
 	for i in range(0,ROWS):
 		for j in range(0, COLS):
 			var tree = SpatialTree.instance()
-			tree.image_cache_path = NodePath("%s/%s" % [get_path() , "/ImageCache"])
+			tree.image_cache_path = tree_image_cache_path
 			var sample = _samples[randi()%_samples.size()]
 			tree.n = sample.n
 			tree.rules = sample.rules
