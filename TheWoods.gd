@@ -1,18 +1,12 @@
 extends Spatial
 
 const SpatialTree = preload("res://SpatialTree.tscn")
+const TreeParams = preload("res://TreeParams.gd")
 
 const ROWS = 3
 const COLS = 10
 const SPACING = 4
 
-class TreeParams:
-	var stroke_width = 2.0
-	var stroke_length = 4.0
-	var axiom = "F"
-	var n = 4
-	var delta = 22.5
-	var rules = "F:FF-[-F+F+F]+[+F-F-F]"
 
 var _samples = []
 
@@ -64,8 +58,10 @@ func _ready():
 	
 	for i in range(0,ROWS):
 		for j in range(0, COLS):
+			var start_time = OS.get_ticks_msec()
 			var tree = SpatialTree.instance()
 			var sample = _samples[randi()%_samples.size()]
+			print("sample hash: %d" % hash(sample) )
 			tree.n = sample.n
 			tree.rules = sample.rules
 			tree.axiom = sample.axiom
@@ -75,6 +71,7 @@ func _ready():
 			tree.translate(Vector3(i * SPACING, 0, j * SPACING))
 			tree.rotate_y(deg2rad(randf() * 360))
 			add_child(tree)
+			print("TheWoods single tree creation took %d" % (OS.get_ticks_msec() - start_time))
 
 const MOVE = 0.1
 var movement = Vector2(0,0)

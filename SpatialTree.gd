@@ -15,11 +15,13 @@ func _ready():
 	$NativeHelp.set("base/stroke_width", stroke_width)
 	$NativeHelp.set("base/stroke_length", stroke_length)
 	
+	var make_image_start_time = OS.get_ticks_msec()
 	var img_with_blank_space:Image = $NativeHelp.make_image()
 	if img_with_blank_space == null:
 		printerr("image wasn't created")
 		return
 	var img = img_with_blank_space.get_rect(img_with_blank_space.get_used_rect())
+	print("make image and get rect took %d" % (OS.get_ticks_msec() - make_image_start_time))
 	
 	var translate_x = 0.5 - _guess_center_along_bottom(img)
 
