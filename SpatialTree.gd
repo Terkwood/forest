@@ -82,10 +82,12 @@ func _cached_make_image():
 	params.delta = delta
 	params.axiom = axiom
 	params.rules = rules
+	
+	var hash_params = hash(params)
 	var cache_node = get_node_or_null(image_cache_path)
-	if cache_node and cache_node.cache and cache_node.cache.has(hash(params)):
-		print("CACHE HIT %d" % hash(params))
-		return cache_node.cache[hash(params)]
+	if cache_node and cache_node.cache and cache_node.cache.has(hash_params):
+		print("CACHE HIT %d" % hash_params)
+		return cache_node.cache[hash_params]
 	else:
 		$NativeHelp.set("base/rules", rules)
 		$NativeHelp.set("base/axiom", axiom)
@@ -102,5 +104,5 @@ func _cached_make_image():
 			return
 		var final_img = img_with_blank_space.get_rect(img_with_blank_space.get_used_rect())
 		if cache_node:
-			cache_node.cache[hash(params)] = final_img
+			cache_node.cache[hash_params] = final_img
 		return final_img
