@@ -10,30 +10,46 @@ export var image_cache_path: NodePath
 
 const TreeParams = preload("res://TreeParams.gd")
 
+const COLORS = [
+	Color.darkolivegreen,
+	Color.darkkhaki,
+	Color.darkgreen,
+	Color.forestgreen,
+	Color.olivedrab,
+	Color.olive,
+	Color.peru,
+	Color.saddlebrown,
+	Color.sienna,
+]
+
 func _ready():
-	var img = _cached_make_image()
-	
-	var translate_x = 0.5 - _guess_center_along_bottom(img)
+	var face_params = FaceParams.new()
+	face_params.img = _cached_make_image()
+	face_params.translate_x = 0.5 - _guess_center_along_bottom(face_params.img)
+	face_params.resize_y_ratio = 1.0 * face_params.img.get_height() / face_params.img.get_width()
+	face_params.color = COLORS[randi()%COLORS.size()]
+	for rot_y in [0, 90]:
+		_make_opposite_faces(face_params, rot_y)
 
-	var resize_y_ratio = 1.0 * img.get_height() / img.get_width()
-	
-	for rotate_y in [0, 90]:
-		_make_opposite_faces(img, resize_y_ratio, rotate_y, translate_x)
+class FaceParams:
+	var img: Image
+	var resize_y_ratio: float
+	var translate_x: float
+	var color: Color
 
-
-func _make_opposite_faces(img: Image, resize_y_ratio: float, rot_y: float, translate_x: float):
+func _make_opposite_faces(params: FaceParams, rot_y: float):
 	var tex = ImageTexture.new()
-	tex.create_from_image(img)
+	tex.create_from_image(params.img)
 	
 	var spatial_mat = SpatialMaterial.new()
-	spatial_mat.albedo_color = Color.darkolivegreen
+	spatial_mat.albedo_color = params.color
 	spatial_mat.albedo_texture = tex
 	spatial_mat.flags_transparent = true
 	
-	var first_face = _make_mesh_instance(spatial_mat, resize_y_ratio, rot_y, translate_x)
+	var first_face = _make_mesh_instance(spatial_mat, params.resize_y_ratio, rot_y, params.translate_x)
 	add_child(first_face)
 	
-	var second_face = _make_mesh_instance(spatial_mat, resize_y_ratio, rot_y, translate_x, true)
+	var second_face = _make_mesh_instance(spatial_mat, params.resize_y_ratio, rot_y, params.translate_x, true)
 	add_child(second_face)
 	
 func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_y_ratio: float, rot_y: float, translate_x: float, flip_faces: bool = false) -> MeshInstance:
