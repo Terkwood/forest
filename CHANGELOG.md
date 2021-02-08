@@ -5,6 +5,11 @@ This release features the ability to add solid colors to the trees. (#49)
 - Update turtle dependency (#50)
 - Upgrade various dependencies (#51) 
 
+Subproject versions:
+
+- gen v0.4.1
+- lindenmayer v0.5.2
+
 # v0.6.0
 
 Add image cache layer to SpatialTree.gd (#47, #48)
