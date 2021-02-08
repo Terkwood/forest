@@ -10,7 +10,7 @@ pub fn convert_svg_to_png_bytes(data: &[u8]) -> (Vec<u8>, Size) {
         height: out.height(),
     };
 
-    (out.data().to_vec(), size)
+    (out.encode_png().expect("encoded"), size)
 }
 
 fn convert_svg_to_png(data: &[u8]) -> Pixmap {
