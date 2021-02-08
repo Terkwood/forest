@@ -8,6 +8,8 @@ const ROWS = 10
 const COLS = 10
 const SPACING = 4
 
+const COLORS = [Color.beige, Color.brown, Color.darkgreen, Color.forestgreen]
+
 var _samples = []
 
 func _make_samples():
@@ -64,6 +66,7 @@ func _ready():
 		for j in range(0, COLS):
 			var tree = SpatialTree.instance()
 			tree.image_cache_path = tree_image_cache_path
+			tree.color = COLORS[randi()%COLORS.size()]
 			var sample = _samples[randi()%_samples.size()]
 			tree.n = sample.n
 			tree.rules = sample.rules

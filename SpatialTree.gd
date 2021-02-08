@@ -7,6 +7,7 @@ export var n = 4
 export var delta = 22.5
 export var rules = "F:FF-[-F+F+F]+[+F-F-F]"
 export var image_cache_path: NodePath
+export var color: Color = Color.black
 
 const TreeParams = preload("res://TreeParams.gd")
 
@@ -21,20 +22,22 @@ func _ready():
 	
 	for rotate_y in [0, 90]:
 		_make_opposite_faces(img, resize_y_ratio, rotate_y, translate_x)
+	
 
 
 func _make_opposite_faces(img: Image, resize_y_ratio: float, rot_y: float, translate_x: float):
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)
 	
-	var first_sm = SpatialMaterial.new()
-	first_sm.albedo_texture = tex
-	first_sm.flags_transparent = true
+	var spatial_mat = SpatialMaterial.new()
+	spatial_mat.albedo_texture = tex
+	spatial_mat.albedo_color = Color.blue
+	spatial_mat.flags_transparent = true
 	
-	var first_face = _make_mesh_instance(first_sm, resize_y_ratio, rot_y, translate_x)
+	var first_face = _make_mesh_instance(spatial_mat, resize_y_ratio, rot_y, translate_x)
 	add_child(first_face)
 	
-	var second_face = _make_mesh_instance(first_sm, resize_y_ratio, rot_y, translate_x, true)
+	var second_face = _make_mesh_instance(spatial_mat, resize_y_ratio, rot_y, translate_x, true)
 	add_child(second_face)
 	
 func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_y_ratio: float, rot_y: float, translate_x: float, flip_faces: bool = false) -> MeshInstance:
