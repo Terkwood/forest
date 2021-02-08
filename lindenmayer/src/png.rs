@@ -1,5 +1,5 @@
 use crate::Size;
-use tiny_skia::Pixmap;
+use tiny_skia::{Color, Pixmap};
 use usvg::FitTo;
 
 pub fn convert_svg_to_png_bytes(data: &[u8]) -> (Vec<u8>, Size) {
