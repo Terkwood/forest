@@ -10,8 +10,8 @@ script = ExtResource( 2 )
 [node name="NativeHelp" type="Spatial" parent="."]
 script = ExtResource( 1 )
 base/delta = 22.5
-base/stroke_length = 10.0
-base/rules = "F:FF-[-F+F+F]+[+F-F-F]"
-base/axiom = "F"
 base/n = 4
 base/stroke_width = 4.0
+base/rules = "F:FF-[-F+F+F]+[+F-F-F]"
+base/axiom = "F"
+base/stroke_length = 10.0

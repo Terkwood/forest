@@ -22,3 +22,38 @@ fn convert_svg_to_png(data: &[u8]) -> Pixmap {
 
     pixmap
 }
+
+#[cfg(test)]
+mod tests {
+    use super::convert_svg_to_png_bytes;
+
+    #[test]
+    fn png_conversion_preserves_color() {
+        use turtle::{Canvas, SvgParams, SvgStrokeColor, SvgStrokeWidth, Turtle};
+        let mut t = Canvas::new();
+        let mut svg_out = vec![];
+        t.forward(100.0);
+        t.right(90.0);
+        t.forward(100.0);
+        t.pen_up();
+        t.forward(10.0);
+        t.pen_down();
+        t.right(90.0);
+        t.forward(100.0);
+        t.right(90.0);
+        t.forward(100.0);
+        t.save_svg(
+            &mut svg_out,
+            SvgParams {
+                stroke_color: SvgStrokeColor::from("white"),
+                stroke_width: SvgStrokeWidth(4.0),
+            },
+        )
+        .expect("write an svg square");
+
+        let (png_bytes, png_size) = convert_svg_to_png_bytes(&svg_out);
+        assert!(!png_bytes.is_empty());
+        assert!(png_size.width > 0);
+        assert!(png_size.height > 0);
+    }
+}
