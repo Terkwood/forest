@@ -4,6 +4,7 @@ This release features the ability to add solid colors to the trees. (#49)
 
 - Update turtle dependency (#50)
 - Upgrade various dependencies (#51) 
+- Fix an unused var warning
 
 Subproject versions:
 

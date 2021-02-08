@@ -77,7 +77,7 @@ func _ready():
 
 const MOVE = 0.1
 var movement = Vector2(0,0)
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_left"):
 		movement = Vector2(-1.0 * MOVE, movement.y)
 	if Input.is_action_just_pressed("ui_right"):
