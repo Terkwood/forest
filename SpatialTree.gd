@@ -26,7 +26,7 @@ func _make_opposite_faces(img: Image, resize_y_ratio: float, rot_y: float, trans
 	tex.create_from_image(img)
 	
 	var spatial_mat = SpatialMaterial.new()
-	spatial_mat.albedo_color = Color.white
+	spatial_mat.albedo_color = Color.darkolivegreen
 	spatial_mat.albedo_texture = tex
 	spatial_mat.flags_transparent = true
 	
