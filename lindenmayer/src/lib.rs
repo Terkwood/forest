@@ -26,6 +26,9 @@ pub struct Size {
     pub height: u32,
 }
 
+/// This is not an encoded PNG byte vec.
+/// These are the raw data from a tinyskia Pixmap,
+/// which apparently godot knows how to deal with!
 #[derive(Debug)]
 pub struct PngBytes {
     pub bytes: Vec<u8>,
