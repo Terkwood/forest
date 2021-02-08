@@ -14,7 +14,8 @@ const COLORS = [
 	Color.darkolivegreen,
 	Color.darkkhaki,
 	Color.darkgreen,
-	Color.forestgreen
+	Color.forestgreen,
+	Color.olivedrab
 ]
 
 func _ready():

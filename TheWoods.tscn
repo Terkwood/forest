@@ -7,7 +7,6 @@
 [sub_resource type="Environment" id=1]
 background_mode = 2
 background_sky = SubResource( 2 )
-ambient_light_color = Color( 1, 1, 1, 1 )
 
 [node name="TheWoods" type="Spatial"]
 script = ExtResource( 1 )
