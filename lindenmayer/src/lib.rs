@@ -34,7 +34,7 @@ pub struct PngBytes {
 
 pub fn tree(opts: TreeOptions) -> PngBytes {
     let svg_bytes = svg::draw_svg_utf8(opts);
-    let (bytes, size) = png::convert_svg_to_png_bytes(&svg_bytes);
+    let (bytes, size) = png::render_pixmap_bytes(&svg_bytes);
     PngBytes { bytes, size }
 }
 

@@ -11,9 +11,7 @@ export var image_cache_path: NodePath
 const TreeParams = preload("res://TreeParams.gd")
 
 func _ready():
-	var make_image_start_time = OS.get_ticks_msec()
 	var img = _cached_make_image()
-	print("make image took %d" % (OS.get_ticks_msec() - make_image_start_time))
 	
 	var translate_x = 0.5 - _guess_center_along_bottom(img)
 
@@ -27,14 +25,15 @@ func _make_opposite_faces(img: Image, resize_y_ratio: float, rot_y: float, trans
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)
 	
-	var first_sm = SpatialMaterial.new()
-	first_sm.albedo_texture = tex
-	first_sm.flags_transparent = true
+	var spatial_mat = SpatialMaterial.new()
+	spatial_mat.albedo_color = Color.white
+	spatial_mat.albedo_texture = tex
+	spatial_mat.flags_transparent = true
 	
-	var first_face = _make_mesh_instance(first_sm, resize_y_ratio, rot_y, translate_x)
+	var first_face = _make_mesh_instance(spatial_mat, resize_y_ratio, rot_y, translate_x)
 	add_child(first_face)
 	
-	var second_face = _make_mesh_instance(first_sm, resize_y_ratio, rot_y, translate_x, true)
+	var second_face = _make_mesh_instance(spatial_mat, resize_y_ratio, rot_y, translate_x, true)
 	add_child(second_face)
 	
 func _make_mesh_instance(spatial_mat: SpatialMaterial, resize_y_ratio: float, rot_y: float, translate_x: float, flip_faces: bool = false) -> MeshInstance:
@@ -94,8 +93,6 @@ func _cached_make_image():
 		$NativeHelp.set("base/delta", delta)
 		$NativeHelp.set("base/stroke_width", stroke_width)
 		$NativeHelp.set("base/stroke_length", stroke_length)
-	
-		var make_image_start_time = OS.get_ticks_msec()
 	
 		var img_with_blank_space:Image = $NativeHelp.make_image()
 		if img_with_blank_space == null:

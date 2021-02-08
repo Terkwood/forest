@@ -1,19 +1,19 @@
 use crate::Size;
-use tiny_skia::{Color, Pixmap};
+use tiny_skia::Pixmap;
 use usvg::FitTo;
 
-pub fn convert_svg_to_png_bytes(data: &[u8]) -> (Vec<u8>, Size) {
-    let out = convert_svg_to_png(data);
+pub fn render_pixmap_bytes(svg_data: &[u8]) -> (Vec<u8>, Size) {
+    let out = render_pixmap(svg_data);
 
     let size = Size {
         width: out.width(),
         height: out.height(),
     };
 
-    (out.encode_png().expect("encoded"), size)
+    (out.data().to_vec(), size)
 }
 
-fn convert_svg_to_png(data: &[u8]) -> Pixmap {
+fn render_pixmap(data: &[u8]) -> Pixmap {
     let rtree = usvg::Tree::from_data(data, &usvg::Options::default()).unwrap();
 
     let pixmap_size = rtree.svg_node().size.to_screen_size();
@@ -25,12 +25,9 @@ fn convert_svg_to_png(data: &[u8]) -> Pixmap {
 
 #[cfg(test)]
 mod tests {
-    use std::io::Write;
+    use super::*;
 
-    use super::convert_svg_to_png_bytes;
-
-    #[test]
-    fn png_conversion_preserves_color() {
+    fn white_square_svg_bytes() -> Vec<u8> {
         use turtle::{Canvas, SvgParams, SvgStrokeColor, SvgStrokeWidth, Turtle};
         let mut t = Canvas::new();
         let mut svg_out = vec![];
@@ -52,13 +49,23 @@ mod tests {
             },
         )
         .expect("write an svg square");
+        svg_out
+    }
 
-        let (png_bytes, png_size) = convert_svg_to_png_bytes(&svg_out);
+    #[test]
+    fn render_pixmap_bytes_preserves_color() {
+        let (png_bytes, png_size) = render_pixmap_bytes(&white_square_svg_bytes());
         assert!(!png_bytes.is_empty());
         assert!(png_size.width > 0);
         assert!(png_size.height > 0);
-
-        let mut png_out_file_hack = std::fs::File::create("pngtest.png").expect("png test file");
-        png_out_file_hack.write(&png_bytes).expect("png test write");
+        let mut found_white = false;
+        let chunked_bytes = png_bytes.chunks(4);
+        for four_bytes in chunked_bytes {
+            if four_bytes == &[0, 0, 0, 0] {
+                found_white = true;
+                break;
+            }
+        }
+        assert!(found_white)
     }
 }
