@@ -25,6 +25,8 @@ fn convert_svg_to_png(data: &[u8]) -> Pixmap {
 
 #[cfg(test)]
 mod tests {
+    use std::io::Write;
+
     use super::convert_svg_to_png_bytes;
 
     #[test]
@@ -55,5 +57,8 @@ mod tests {
         assert!(!png_bytes.is_empty());
         assert!(png_size.width > 0);
         assert!(png_size.height > 0);
+
+        let mut png_out_file_hack = std::fs::File::create("pngtest.png").expect("png test file");
+        png_out_file_hack.write(&png_bytes).expect("png test write");
     }
 }
