@@ -1,4 +1,4 @@
-# next: v0.7.0
+# v0.7.0
 
 This release features the ability to add solid colors to the trees. (#49)
 
