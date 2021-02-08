@@ -2,6 +2,7 @@
 
 This release features the ability to add solid colors to the trees. (#49)
 
+- Color the trees in the main godot project (#53)
 - Use SVG stroke-color "white" in lindenmayer::draw (#52)
 - Create a ProceduralSky in the main scene (#52)
 - Update turtle dependency (#50)
