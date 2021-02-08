@@ -2,6 +2,8 @@
 
 Draw simple L-System trees using Godot and rust. 🌳🤖🦀
 
+![walking through the woods](https://user-images.githubusercontent.com/38859656/107287383-e13fe400-6a2f-11eb-8984-948fa41bbf8e.gif)
+
 ![3d demo](https://user-images.githubusercontent.com/38859656/106643338-987fbb00-6557-11eb-8073-a74835f75184.gif)
 
 ![forest demo](https://user-images.githubusercontent.com/38859656/106504249-aa4c5a00-6494-11eb-8968-5ec347e91094.png)
