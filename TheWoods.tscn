@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://TheWoods.gd" type="Script" id=1]
 
+[sub_resource type="ProceduralSky" id=2]
+
 [sub_resource type="Environment" id=1]
+background_mode = 2
+background_sky = SubResource( 2 )
+ambient_light_color = Color( 1, 1, 1, 1 )
 
 [node name="TheWoods" type="Spatial"]
 script = ExtResource( 1 )
