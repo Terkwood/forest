@@ -27,6 +27,23 @@ fn render_pixmap(data: &[u8]) -> Pixmap {
 mod tests {
     use super::*;
 
+    #[test]
+    fn render_pixmap_bytes_preserves_color() {
+        let (png_bytes, png_size) = render_pixmap_bytes(&white_square_svg_bytes());
+        assert!(!png_bytes.is_empty());
+        assert!(png_size.width > 0);
+        assert!(png_size.height > 0);
+        let mut found_white = false;
+        let chunked_bytes = png_bytes.chunks(4);
+        for four_bytes in chunked_bytes {
+            if four_bytes == &[0, 0, 0, 0] {
+                found_white = true;
+                break;
+            }
+        }
+        assert!(found_white)
+    }
+
     fn white_square_svg_bytes() -> Vec<u8> {
         use turtle::{Canvas, SvgParams, SvgStrokeColor, SvgStrokeWidth, Turtle};
         let mut t = Canvas::new();
@@ -50,22 +67,5 @@ mod tests {
         )
         .expect("write an svg square");
         svg_out
-    }
-
-    #[test]
-    fn render_pixmap_bytes_preserves_color() {
-        let (png_bytes, png_size) = render_pixmap_bytes(&white_square_svg_bytes());
-        assert!(!png_bytes.is_empty());
-        assert!(png_size.width > 0);
-        assert!(png_size.height > 0);
-        let mut found_white = false;
-        let chunked_bytes = png_bytes.chunks(4);
-        for four_bytes in chunked_bytes {
-            if four_bytes == &[0, 0, 0, 0] {
-                found_white = true;
-                break;
-            }
-        }
-        assert!(found_white)
     }
 }
