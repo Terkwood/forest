@@ -29,6 +29,7 @@ func _make_opposite_faces(img: Image, resize_y_ratio: float, rot_y: float, trans
 	spatial_mat.albedo_color = Color.white
 	spatial_mat.albedo_texture = tex
 	spatial_mat.flags_transparent = true
+	spatial_mat.flags_disable_ambient_light = true
 	
 	var first_face = _make_mesh_instance(spatial_mat, resize_y_ratio, rot_y, translate_x)
 	add_child(first_face)
