@@ -1,6 +1,8 @@
 # next: v0.7.0
 
-- Update turtle dependency 
+This release features the ability to add solid colors to the trees. (#49)
+
+- Update turtle dependency (#50) 
 
 # v0.6.0
 
