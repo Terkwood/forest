@@ -13,7 +13,8 @@ const TreeParams = preload("res://TreeParams.gd")
 const COLORS = [
 	Color.darkolivegreen,
 	Color.darkkhaki,
-	Color.darkgreen
+	Color.darkgreen,
+	Color.forestgreen
 ]
 
 func _ready():
