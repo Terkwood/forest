@@ -1,3 +1,7 @@
+# next: v0.7.0
+
+- Update turtle dependency 
+
 # v0.6.0
 
 Add image cache layer to SpatialTree.gd (#47, #48)
