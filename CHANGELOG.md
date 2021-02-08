@@ -3,6 +3,7 @@
 This release features the ability to add solid colors to the trees. (#49)
 
 - Use SVG stroke-color "white" in lindenmayer::draw (#52)
+- Create a ProceduralSky in the main scene (#52)
 - Update turtle dependency (#50)
 - Upgrade various dependencies (#51) 
 - Fix an unused var warning (commit 574c5a0)
