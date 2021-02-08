@@ -468,7 +468,7 @@ where
     fn random_rule_id<R: Rng>(&self, rng: &mut R) -> Option<&<A as DualAlphabet>::NonTerminal> {
         let len = self.rules.len();
         if len > 0 {
-            let nth = rng.gen_range(0, len);
+            let nth = rng.gen_range(0..len);
             self.rules.iter().map(|(k, _)| k).nth(nth)
         } else {
             None
@@ -484,7 +484,7 @@ where
             if let Some(local_rules) = self.rules.get(rule_id) {
                 let len = local_rules.len();
                 if len > 0 {
-                    let idx = rng.gen_range(0, len);
+                    let idx = rng.gen_range(0..len);
                     callback(rng, Some(&local_rules[idx]));
                     return;
                 }
@@ -504,7 +504,7 @@ where
             if let Some(local_rules) = self.rules.get_mut(&rule_id) {
                 let len = local_rules.len();
                 if len > 0 {
-                    let idx = rng.gen_range(0, len);
+                    let idx = rng.gen_range(0..len);
                     callback(rng, Some(&mut local_rules[idx]));
                     return;
                 }
