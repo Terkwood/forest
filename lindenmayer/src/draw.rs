@@ -1,6 +1,6 @@
 use crate::parametric::ParametricSymbol;
 use std::io::Write;
-use turtle_crab::{Canvas, Turtle};
+use turtle::{Canvas, SvgParams, SvgStrokeWidth, Turtle};
 
 pub fn draw<W: Write>(
     symstr: &[crate::SymR],
@@ -31,5 +31,13 @@ pub fn draw<W: Write>(
             _ => {}
         }
     }
-    t.save_svg(writer, Some(stroke_width)).unwrap();
+
+    t.save_svg(
+        writer,
+        SvgParams {
+            stroke_width: SvgStrokeWidth(stroke_width),
+            ..Default::default()
+        },
+    )
+    .unwrap();
 }

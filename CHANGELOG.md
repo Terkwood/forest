@@ -1,3 +1,9 @@
+# next: v0.7.0
+
+This release features the ability to add solid colors to the trees. (#49)
+
+- Update turtle dependency (#50) 
+
 # v0.6.0
 
 Add image cache layer to SpatialTree.gd (#47, #48)
