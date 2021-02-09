@@ -2,11 +2,11 @@
 
 [ext_resource path="res://TheWoods.gd" type="Script" id=1]
 
-[sub_resource type="ProceduralSky" id=2]
+[sub_resource type="ProceduralSky" id=1]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 2 )
+background_sky = SubResource( 1 )
 
 [node name="TheWoods" type="Spatial"]
 script = ExtResource( 1 )
@@ -17,4 +17,4 @@ current = true
 fov = 90.8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 2 )
