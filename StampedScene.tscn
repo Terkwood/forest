@@ -16,3 +16,4 @@ environment = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.561355, 1.25012 )
+current = true
