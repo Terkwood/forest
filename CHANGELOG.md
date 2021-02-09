@@ -1,6 +1,6 @@
 # next: v0.7.1
 
-- Pull out sample tree params into an `Object`
+- Pull out sample tree params into an `Object` (#55)
 
 # v0.7.0
 
