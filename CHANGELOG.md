@@ -1,3 +1,7 @@
+# next: v0.7.1
+
+- Pull out sample tree params into an `Object`
+
 # v0.7.0
 
 This release features the ability to add solid colors to the trees. (#49)

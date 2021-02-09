@@ -2,59 +2,15 @@ extends Spatial
 
 const SpatialTree = preload("res://SpatialTree.tscn")
 const TreeParams = preload("res://TreeParams.gd")
+const SampleParams = preload("res://SampleParams.gd")
 const ImageCache = preload("res://ImageCache.gd")
 
 const ROWS = 10
 const COLS = 10
 const SPACING = 4
 
-var _samples = []
-
-func _make_samples():
-	var a = TreeParams.new()
-	a.rules = "F:F[+F]F[-F]F"
-	a.axiom = "F"
-	a.delta = 25.7
-	a.n = 5
-	_samples.push_front(a)
-	
-	var b = TreeParams.new()
-	b.rules = "F:F[+F]F[-F][F]"
-	b.axiom = "F"
-	b.n = 5
-	b.delta = 20.0
-	_samples.push_front(b)
-	
-	var c = TreeParams.new()
-	c.rules = "F:FF-[-F+F+F]+[+F-F-F]"
-	c.axiom = "F"
-	c.delta = 22.5
-	c.n = 4
-	_samples.push_front(c)
-	
-	var d = TreeParams.new()
-	d.axiom = "X"
-	d.rules = "X:F[+X]F[-X]+X;F:FF"
-	d.n = 7
-	d.delta = 20.0
-	_samples.push_front(d)
-	
-	var e = TreeParams.new()
-	e.delta = 25.7
-	e.axiom = "X"
-	e.rules = "X:F[+X][-X]FX;F:FF"
-	e.n = 7
-	_samples.push_front(e)
-	
-	var f = TreeParams.new()
-	f.axiom = "X"
-	f.delta = 22.5
-	f.rules = "X:F-[[X]+X]+F[+FX]-X;F:FF"
-	f.n = 5
-	_samples.push_front(f)
-
 func _ready():
-	_make_samples()
+	var samples = SampleParams.new().make_all()
 	var image_cache = ImageCache.new()
 	image_cache.name = "ImageCache"
 	add_child(image_cache)
@@ -64,7 +20,7 @@ func _ready():
 		for j in range(0, COLS):
 			var tree = SpatialTree.instance()
 			tree.image_cache_path = tree_image_cache_path
-			var sample = _samples[randi()%_samples.size()]
+			var sample = samples[randi()%samples.size()]
 			tree.n = sample.n
 			tree.rules = sample.rules
 			tree.axiom = sample.axiom
