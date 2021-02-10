@@ -1,9 +1,9 @@
 extends Spatial
 
 const TreeParams = preload("res://TreeParams.gd")
+const Stamp = preload("res://stamp.gd")
 
 onready var _samples = preload("res://SampleParams.gd").new().make_all()
-const Stamp = preload("res://stamp.gd")
 
 func _ready():
 	var stamp = Stamp.new()
