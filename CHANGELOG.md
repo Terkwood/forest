@@ -1,5 +1,6 @@
 # next: v0.7.1
 
+- refactor: auto load image cache (#57)
 - Pull out sample tree params into an `Object` (#55)
 
 # v0.7.0
