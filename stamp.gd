@@ -15,3 +15,7 @@ func stamp(pos: Vector3, _owner: Node):
 func _compute_transforms(pos: Vector3) -> Array:
 	printerr("write me")
 	return []
+
+func _random_point_in_circle() -> Vector3:
+	printerr("write me")
+	return Vector3()
