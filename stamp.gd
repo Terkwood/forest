@@ -4,10 +4,10 @@ export var brush_size: float = 10.0
 export var density: float = 1.0
 export var image_cache_path: NodePath = NodePath("/root/ImageCache") # autoload
 
-const SpatialTree = preload("res://SpatialTree.gd")
+const SpatialTree = preload("res://SpatialTree.tscn")
 const TreeParams = preload("res://TreeParams.gd")
 
-func stamp(pos: Vector3, tree_params: TreeParams, owner: Node):
+func apply(pos: Vector3, tree_params: TreeParams, owner: Node):
 	var transforms = _compute_transforms(pos)
 	for t in transforms:
 		var tree = SpatialTree.instance()

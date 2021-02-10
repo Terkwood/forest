@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ImageCache="*res://ImageCache.gd"
+RandomizeOnce="*res://randomize_once.gd"
 
 [display]
 
