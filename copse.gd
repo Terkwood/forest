@@ -12,7 +12,10 @@ class Planted:
 		return false
 
 
-func plant_trees():
+func plant_trees(
+	current_planted: Array,
+	density: float,
+	step_down: float):
 	printerr("write me")
 	pass
 
