@@ -16,6 +16,14 @@ func _compute_transforms(pos: Vector3) -> Array:
 	printerr("write me")
 	return []
 
-func _random_point_in_circle() -> Vector3:
-	printerr("write me")
-	return Vector3()
+func _rant_point_in_circle(radius: float) -> Vector3:
+	var x_sign = _rand_sign()
+	var z_sign = _rand_sign()
+	
+	var x = x_sign * randf() * radius
+	var z = z_sign * randf() * radius
+	
+	return Vector3(x,0,z)
+
+func _rand_sign() -> float:
+	return -1.0 if randi()%2 == 0 else 1.0
