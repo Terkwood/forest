@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Resource",
+"class": "TreeParams",
+"language": "GDScript",
+"path": "res://TreeParams.gd"
+} ]
 _global_script_class_icons={
-
+"TreeParams": ""
 }
 
 [application]

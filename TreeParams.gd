@@ -1,5 +1,7 @@
 extends Resource
 
+class_name TreeParams
+
 var stroke_width = 2.0
 var stroke_length = 4.0
 var axiom = "F"
