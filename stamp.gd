@@ -16,7 +16,7 @@ func _compute_transforms(pos: Vector3) -> Array:
 	printerr("write me")
 	return []
 
-func _rant_point_in_circle(radius: float) -> Vector3:
+func _rand_point_in_circle(radius: float) -> Vector3:
 	var x_sign = _rand_sign()
 	var z_sign = _rand_sign()
 	
