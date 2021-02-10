@@ -12,7 +12,7 @@ class Planted:
 		return false
 
 
-func plant():
+func plant_trees():
 	printerr("write me")
 	pass
 
