@@ -7,12 +7,20 @@ export var image_cache_path: NodePath = NodePath("/root/ImageCache") # autoload
 const SpatialTree = preload("res://SpatialTree.gd")
 const TreeParams = preload("res://TreeParams.gd")
 
-func stamp(pos: Vector3, tree_params: TreeParams, _owner: Node):
+func stamp(pos: Vector3, tree_params: TreeParams, owner: Node):
 	var transforms = _compute_transforms(pos)
 	for t in transforms:
-		printerr("write me")
-	return ERR_HELP
-	
+		var tree = SpatialTree.instance()
+		tree.image_cache_path = image_cache_path
+		tree.n = tree_params.n
+		tree.rules = tree_params.rules
+		tree.axiom = tree_params.axiom
+		tree.delta = tree_params.delta
+		tree.stroke_length = tree_params.stroke_length
+		tree.stroke_width = tree_params.stroke_width
+		tree.translate(t)
+		tree.rotate_y(deg2rad(randf() * 360))
+		owner.add_child(tree)
 	
 # compute a bunch of transforms given a position, brush size,
 # and density
