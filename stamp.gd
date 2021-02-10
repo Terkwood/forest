@@ -6,7 +6,7 @@ export var density: float = 1.0
 const SpatialTree = preload("res://SpatialTree.gd")
 const TreeParams = preload("res://TreeParams.gd")
 
-func stamp(pos: Vector3, _owner: Node):
+func stamp(pos: Vector3, tree_params: TreeParams, _owner: Node):
 	var transforms = _compute_transforms(pos)
 	for t in transforms:
 		printerr("write me")
