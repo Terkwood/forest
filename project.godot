@@ -19,6 +19,10 @@ config/name="forest"
 run/main_scene="res://TheWoods.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ImageCache="*res://ImageCache.gd"
+
 [display]
 
 window/size/width=1920

@@ -9,17 +9,14 @@ const ROWS = 10
 const COLS = 10
 const SPACING = 4
 
+const CACHE_PATH = NodePath("/root/ImageCache") #autoloaded
+
 func _ready():
 	var samples = SampleParams.new().make_all()
-	var image_cache = ImageCache.new()
-	image_cache.name = "ImageCache"
-	add_child(image_cache)
-	var tree_image_cache_path = NodePath("%s/%s" % [get_path() , "/ImageCache"])
-	
 	for i in range(0,ROWS):
 		for j in range(0, COLS):
 			var tree = SpatialTree.instance()
-			tree.image_cache_path = tree_image_cache_path
+			tree.image_cache_path = CACHE_PATH
 			var sample = samples[randi()%samples.size()]
 			tree.n = sample.n
 			tree.rules = sample.rules
