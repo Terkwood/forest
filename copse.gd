@@ -15,3 +15,7 @@ class Planted:
 func plant():
 	printerr("write me")
 	pass
+
+func _random_nearby(position: Vector3, radius: float) -> Vector3:
+	printerr("write me")
+	return Vector3()
