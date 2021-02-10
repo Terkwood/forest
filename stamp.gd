@@ -2,6 +2,7 @@ extends Object
 
 export var brush_size: float = 10.0
 export var density: float = 1.0
+export var image_cache_path: NodePath = NodePath("/root/ImageCache") # autoload
 
 const SpatialTree = preload("res://SpatialTree.gd")
 const TreeParams = preload("res://TreeParams.gd")
