@@ -14,8 +14,10 @@ func stamp(pos: Vector3, _owner: Node):
 # and density
 func _compute_transforms(pos: Vector3) -> Array:
 	var how_many = int(brush_size / density)
-	printerr("write me")
-	return []
+	var out = []
+	for _b in how_many:
+		out.push_front(_rand_point_in_circle(brush_size / 2.0))
+	return out
 
 func _rand_point_in_circle(radius: float) -> Vector3:
 	var x_sign = _rand_sign()
