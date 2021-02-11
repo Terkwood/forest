@@ -28,7 +28,6 @@ func apply(pos: Vector3, tree_params: TreeParams, owner: Node):
 # and density
 func _compute_transforms(pos: Vector3) -> Array:
 	var how_many = int(brush_size * density * _DENSITY_COEFF)
-	print("how many %d"% how_many)
 	var out = []
 	for _b in how_many:
 		out.push_front(_rand_point_in_circle(brush_size / 2.0))
