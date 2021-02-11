@@ -15,5 +15,5 @@ script = ExtResource( 1 )
 environment = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.93089, 0.365299, 0, -0.365299, 0.93089, 0.130265, 5.25541, 5.18292 )
+transform = Transform( -0.975519, -0.0862417, 0.202299, 0, 0.919897, 0.39216, -0.219914, 0.38256, -0.897377, 2.68693, 4.92504, -6.49633 )
 current = true

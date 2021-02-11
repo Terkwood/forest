@@ -7,6 +7,8 @@ export var image_cache_path: NodePath = NodePath("/root/ImageCache") # autoload
 const SpatialTree = preload("res://SpatialTree.tscn")
 const TreeParams = preload("res://TreeParams.gd")
 
+const _DENSITY_COEFF = 0.5
+
 func apply(pos: Vector3, tree_params: TreeParams, owner: Node):
 	var transforms = _compute_transforms(pos)
 	for t in transforms:
@@ -25,7 +27,7 @@ func apply(pos: Vector3, tree_params: TreeParams, owner: Node):
 # compute a bunch of transforms given a position, brush size,
 # and density
 func _compute_transforms(pos: Vector3) -> Array:
-	var how_many = int(brush_size / density)
+	var how_many = int(brush_size * density * _DENSITY_COEFF)
 	var out = []
 	for _b in how_many:
 		out.push_front(_rand_point_in_circle(brush_size / 2.0))
@@ -38,7 +40,9 @@ func _rand_point_in_circle(radius: float) -> Vector3:
 	var x = x_sign * randf() * radius
 	var z = z_sign * randf() * radius
 	
-	return Vector3(x,0,z)
+	var theta = deg2rad(randf() * 360)
+	
+	return Vector3(x * cos(theta),0,z * sin(theta))
 
 func _rand_sign() -> float:
 	return -1.0 if randi()%2 == 0 else 1.0
