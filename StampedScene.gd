@@ -15,5 +15,5 @@ func _ready():
 	smaller_stamp.apply(Vector3(5.0, 0, -7.5), _samples[2], self)
 	
 	var denser_stamp = Stamp.new()
-	denser_stamp.density = 3
-	denser_stamp.apply(Vector3(-10.0, 0, 7.5), _samples[3], self)
+	denser_stamp.density = 2
+	denser_stamp.apply(Vector3(-20.0, 0, 13.5), _samples[3], self)

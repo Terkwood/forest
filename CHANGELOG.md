@@ -5,6 +5,7 @@ types of trees in a somewhat pleasing fashion.
 
 - feat: tree stamp (#54, #56)
 - feat: plant a large area (#58)
+- fix: add forgotten cos & sin, fiddle with density (#60)
 - refactor: auto load image cache (#57)
 - refactor: sample tree params into an `Object` (#55)
 - refactor: preload order in StampedScene
