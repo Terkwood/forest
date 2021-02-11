@@ -13,9 +13,11 @@ class Planted:
 
 
 func plant_trees(
-	current_planted: Array,
+	tree_params: TreeParams,
+	position: Vector3,
 	density: float,
-	step_down: float):
+	step_down: float,
+	already_planted: Array):
 	printerr("write me")
 	pass
 
