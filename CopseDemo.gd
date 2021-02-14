@@ -10,7 +10,7 @@ func _ready():
 	var stamp = Stamp.new()
 	var copse = Copse.new()
 	var tree_params = _samples[0]
-	var density = 1.0
+	var density = stamp.density
 	var radius = stamp.brush_size
 	var step_down = 0.25
 	

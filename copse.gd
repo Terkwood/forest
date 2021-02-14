@@ -42,7 +42,7 @@ func plant_trees(
 		pos_to_visit = new_pos
 		
 
-const _MAX_ATTEMPTS = 5
+const _MAX_ATTEMPTS = 3
 func _plant_level(
 	tree_params: TreeParams,
 	position: Vector3,
@@ -72,8 +72,8 @@ func _any_contain(planted: Array, position: Vector3) -> bool:
 			return true
 	return false
 
-const _WALK_C = 1.66
-const _WALK_R = 0.34
+const _WALK_C = 2.66
+const _WALK_R = 1.34
 func _random_walk(position: Vector3, radius: float) -> Vector3:
 	var t = deg2rad(randf() * 360.0)
 	var d = radius * _WALK_C + randf() * _WALK_R
