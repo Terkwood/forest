@@ -18,8 +18,8 @@ func plant_trees(
 	density: float,
 	radius: float,
 	step_down: float,
+	stamp: Stamp,
 	owner: Node):
-	var stamp = Stamp.new()
 	if step_down < 0.0:
 		printerr("invalid step_down")
 		return
@@ -37,7 +37,7 @@ func plant_trees(
 		for next_position in pos_to_visit:
 			for newly_planted in _plant_level(tree_params, next_position, next_density, radius, planted, stamp, owner):
 				planted.push_front(newly_planted)
-				new_pos.push(newly_planted.position)
+				new_pos.push_front(newly_planted.position)
 		next_density = next_density - step_down
 		pos_to_visit = new_pos
 		
