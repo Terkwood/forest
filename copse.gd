@@ -13,12 +13,25 @@ class Planted:
 
 func plant_trees(
 	tree_params: TreeParams,
-	position: Vector3,
+	init_position: Vector3,
 	density: float,
-	step_down: float,
-	already_planted: Array):
-	printerr("write me")
-	pass
+	step_down: float):
+	if step_down < 0.0:
+		printerr("invalid step_down")
+		return
+	if density < 0.0:
+		printerr("invalid density")
+		return
+	var planted = []
+	var next_density = density
+	var next_position = init_position
+	var pos_to_visit = []
+	while density > 0.0:
+		for newly_planted in _plant_level(tree_params, next_position, next_density, planted):
+			planted.push_front(newly_planted)
+			pos_to_visit.push(newly_planted.position)
+		next_density = next_density - step_down
+		
 
 const _MAX_RETRIES = 5
 func _plant_level(
@@ -26,8 +39,9 @@ func _plant_level(
 	position: Vector3,
 	density: float,
 	already_planted: Array,
-	retries_left: int = _MAX_RETRIES):
-	pass
+	retries_left: int = _MAX_RETRIES) -> Array:
+	printerr("write me")
+	return []
 
 const _WALK_C = 1.66
 const _WALK_R = 0.34
