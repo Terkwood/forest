@@ -24,13 +24,15 @@ func plant_trees(
 		return
 	var planted = []
 	var next_density = density
-	var next_position = init_position
-	var pos_to_visit = []
+	var pos_to_visit = [init_position]
 	while density > 0.0:
-		for newly_planted in _plant_level(tree_params, next_position, next_density, planted):
-			planted.push_front(newly_planted)
-			pos_to_visit.push(newly_planted.position)
+		var new_pos = []
+		for next_position in pos_to_visit:
+			for newly_planted in _plant_level(tree_params, next_position, next_density, planted):
+				planted.push_front(newly_planted)
+				new_pos.push(newly_planted.position)
 		next_density = next_density - step_down
+		pos_to_visit = new_pos
 		
 
 const _MAX_RETRIES = 5
