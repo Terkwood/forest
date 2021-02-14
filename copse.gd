@@ -40,10 +40,16 @@ func _plant_level(
 	tree_params: TreeParams,
 	position: Vector3,
 	density: float,
-	already_planted: Array,
+	planted: Array,
 	retries_left: int = _MAX_RETRIES) -> Array:
 	printerr("write me")
 	return []
+
+func _any_contain(planted: Array, position: Vector3) -> bool:
+	for p in planted:
+		if p.contains(position):
+			return true
+	return false
 
 const _WALK_C = 1.66
 const _WALK_R = 0.34
