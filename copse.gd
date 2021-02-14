@@ -11,7 +11,6 @@ class Planted:
 		return position.distance_to(some) < radius
 
 
-
 func plant_trees(
 	tree_params: TreeParams,
 	position: Vector3,
@@ -19,6 +18,15 @@ func plant_trees(
 	step_down: float,
 	already_planted: Array):
 	printerr("write me")
+	pass
+
+const _MAX_RETRIES = 5
+func _plant_level(
+	tree_params: TreeParams,
+	position: Vector3,
+	density: float,
+	already_planted: Array,
+	retries_left: int = _MAX_RETRIES):
 	pass
 
 const _WALK_C = 1.66
