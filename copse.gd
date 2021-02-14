@@ -8,8 +8,8 @@ class Planted:
 	var radius: float
 	var position: Vector3
 	func contains(some: Vector3) -> bool:
-		printerr("write me")
-		return false
+		return position.distance_to(some) < radius
+
 
 
 func plant_trees(
