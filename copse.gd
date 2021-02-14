@@ -1,6 +1,7 @@
 extends Object
 
 const TreeParams = preload("res://TreeParams.gd")
+const Stamp = preload("res://stamp.gd")
 
 class Planted:
 	var tree_params: TreeParams
@@ -16,7 +17,9 @@ func plant_trees(
 	init_position: Vector3,
 	density: float,
 	radius: float,
-	step_down: float):
+	step_down: float,
+	owner: Node):
+	var stamp = Stamp.new()
 	if step_down < 0.0:
 		printerr("invalid step_down")
 		return
@@ -32,7 +35,7 @@ func plant_trees(
 	while density > 0.0:
 		var new_pos = []
 		for next_position in pos_to_visit:
-			for newly_planted in _plant_level(tree_params, next_position, next_density, radius, planted):
+			for newly_planted in _plant_level(tree_params, next_position, next_density, radius, planted, stamp, owner):
 				planted.push_front(newly_planted)
 				new_pos.push(newly_planted.position)
 		next_density = next_density - step_down
@@ -45,13 +48,21 @@ func _plant_level(
 	position: Vector3,
 	density: float,
 	radius: float,
-	planted: Array) -> Array:
+	planted: Array,
+	stamp: Stamp,
+	owner: Node) -> Array:
 	var newly_planted = []
 	var attempts_left = _MAX_ATTEMPTS
 	while attempts_left > 0:
-		if !_any_contain(planted, _random_walk(position, radius)):
-			printerr("STAMP IT")
-			printerr("THEN PUSH TO NEWLY_PLANTED")
+		var rand_pos = _random_walk(position, radius)
+		if !_any_contain(planted, rand_pos):
+			stamp.apply(rand_pos, tree_params, owner)
+			var p = Planted.new()
+			p.density = density
+			p.position = rand_pos
+			p.radius = radius
+			p.tree_params = tree_params
+			newly_planted.push_front(p)
 		attempts_left -= 1
 	return newly_planted
 
