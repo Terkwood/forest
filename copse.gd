@@ -32,7 +32,7 @@ func plant_trees(
 	var planted = []
 	var next_density = density
 	var pos_to_visit = [init_position]
-	while density > 0.0:
+	while next_density > 0.0:
 		var new_pos = []
 		for next_position in pos_to_visit:
 			for newly_planted in _plant_level(tree_params, next_position, next_density, radius, planted, stamp, owner):
