@@ -21,6 +21,9 @@ func plant_trees(
 	printerr("write me")
 	pass
 
-func _random_nearby(position: Vector3, radius: float) -> Vector3:
-	printerr("write me")
-	return Vector3()
+const _WALK_C = 1.66
+const _WALK_R = 0.34
+func _random_walk(position: Vector3, radius: float) -> Vector3:
+	var t = deg2rad(randf() * 360.0)
+	var d = radius * _WALK_C + randf() * _WALK_R
+	return Vector3(position.x + cos(t) * d, position.y, position.z + sin(t) * d)
