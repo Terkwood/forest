@@ -12,7 +12,7 @@ func _ready():
 	var tree_params = _samples[0]
 	var density = stamp.density
 	var radius = stamp.brush_size
-	var step_down = 0.25
+	var step_down = 0.15
 	
 	copse.plant_trees(tree_params, Vector3(0,0,0), density, radius, step_down, stamp, self)
 	
