@@ -15,6 +15,7 @@ func plant_trees(
 	tree_params: TreeParams,
 	init_position: Vector3,
 	density: float,
+	radius: float,
 	step_down: float):
 	if step_down < 0.0:
 		printerr("invalid step_down")
@@ -22,28 +23,37 @@ func plant_trees(
 	if density < 0.0:
 		printerr("invalid density")
 		return
+	if radius < 0.0:
+		printerr("invalid radius")
+		return
 	var planted = []
 	var next_density = density
 	var pos_to_visit = [init_position]
 	while density > 0.0:
 		var new_pos = []
 		for next_position in pos_to_visit:
-			for newly_planted in _plant_level(tree_params, next_position, next_density, planted):
+			for newly_planted in _plant_level(tree_params, next_position, next_density, radius, planted):
 				planted.push_front(newly_planted)
 				new_pos.push(newly_planted.position)
 		next_density = next_density - step_down
 		pos_to_visit = new_pos
 		
 
-const _MAX_RETRIES = 5
+const _MAX_ATTEMPTS = 5
 func _plant_level(
 	tree_params: TreeParams,
 	position: Vector3,
 	density: float,
-	planted: Array,
-	retries_left: int = _MAX_RETRIES) -> Array:
-	printerr("write me")
-	return []
+	radius: float,
+	planted: Array) -> Array:
+	var newly_planted = []
+	var attempts_left = _MAX_ATTEMPTS
+	while attempts_left > 0:
+		if !_any_contain(planted, _random_walk(position, radius)):
+			printerr("STAMP IT")
+			printerr("THEN PUSH TO NEWLY_PLANTED")
+		attempts_left -= 1
+	return newly_planted
 
 func _any_contain(planted: Array, position: Vector3) -> bool:
 	for p in planted:
