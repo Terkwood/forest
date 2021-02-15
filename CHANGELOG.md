@@ -1,5 +1,6 @@
 # next: v0.8.1
 
+- fix: trim print statement
 - fix: tweak camera position and window size (#61)
 
 # v0.8.0
