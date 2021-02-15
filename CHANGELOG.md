@@ -1,3 +1,7 @@
+# next: v0.8.1
+
+- fix: tweak camera position and window size (#61)
+
 # v0.8.0
 
 This release provides support for randomly planting various
