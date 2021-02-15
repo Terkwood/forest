@@ -1,4 +1,4 @@
-# next: v0.8.0
+# v0.8.0
 
 This release provides support for randomly planting various
 types of trees in a somewhat pleasing fashion.
