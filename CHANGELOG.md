@@ -1,6 +1,7 @@
 # next: v0.8.1
 
-- fix: trim print statement
+- fix: update entry scene (78dff22)
+- fix: trim print statement (672c2cc)
 - fix: tweak camera position and window size (#61)
 
 # v0.8.0
