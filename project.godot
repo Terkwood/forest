@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="forest"
-run/main_scene="res://TheWoods.tscn"
+run/main_scene="res://CopseDemo.tscn"
 config/icon="res://icon.png"
 
 [autoload]
