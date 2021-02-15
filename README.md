@@ -14,7 +14,11 @@ This project implements procedural drawing of trees in [Godot engine](https://go
 
 The tree is first drawn with a Turtle implementation, as seen in [The Algorithmic Beauty of Plants](http://algorithmicbotany.org/papers/#abop).  It is converted to SVG in memory, and then to PNG bytes which are consumable by Godot.
 
-### Justification
+## Caching
+
+This project implements a cache of `Image` outputs, reducing the time it takes to reproduce individual tree styles.
+
+## Justification
 
 We found that [Godot custom drawing in 2D](https://docs.godotengine.org/en/3.2/tutorials/2d/custom_drawing_in_2d.html) slows the frame rate when compared to using sprites/textures.
 
